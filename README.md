@@ -1,4 +1,4 @@
-# Blogg - A Flat-File Blog Script
+# blogg - A Flat-File Blog Script
 
 This is a simple flat-file blog script written in PHP. It allows users to display static blog entries with subjects, date and time stamps, and supports pagination and markdown.
 
