@@ -16,7 +16,7 @@ This is a simple flat-file blog script written in PHP. It allows users to post b
 
     Post content goes here.
 
-![image info](screen2.png)
+![image info](screen3.png)
 
 ## License
 
