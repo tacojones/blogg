@@ -1,6 +1,6 @@
-# Flat-File Blog Script
+# Blogg - A Flat-File Blog Script
 
-This is a simple flat-file blog script written in PHP. It allows users to post blog entries with subjects, date and time stamps, and supports pagination and autolinking of URLs. The blog has a modern, dark blue design with a one-column layout.
+This is a simple flat-file blog script written in PHP. It allows users to display static blog entries with subjects, date and time stamps, and supports pagination and markdown.
 
 ## Features
 
