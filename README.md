@@ -11,6 +11,7 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Search**: blogg supports searching via a search form.
 
 ![image info](screen.png)
+
 ![image info](screen2.png)
 
 ## License
