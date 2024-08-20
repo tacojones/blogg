@@ -4,11 +4,11 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 
 ## Features
 
-- **Flat-File Storage**: Posts are stored as individual text files in a directory.
-- **Markdown**: blogg features markdown support with Parsedown.php.
-- **Pagination**: blogg supports pagination for browsing posts.
-- **Read More**: blogg supports truncation of long articles with a Read More link.
-- **Search**: blogg supports searching via a search form.
+- **Flat-File Storage**: Posts are stored as individual text files in a directory
+- **Markdown**: blogg features markdown support with Parsedown.php
+- **Pagination**: blogg supports pagination for browsing posts
+- **Read More**: blogg supports truncation with a Read More link for long articles
+- **Search**: blogg supports text searches via a search form
 
 ![image info](blogg_screenshot.png)
 
