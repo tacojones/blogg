@@ -10,6 +10,8 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Read More**: blogg supports Truncation of long articles with a Read More link.
 - **Search**: blogg supports searching via a search form.
 
+![image info](blogg_screenshot.png)
+
 ![image info](screen.png)
 
 ![image info](screen2.png)
