@@ -12,8 +12,6 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 
 ![image info](blogg_screenshot.png)
 
-![image info](screen.png)
-
 ![image info](screen2.png)
 
 ## License
