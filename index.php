@@ -1,5 +1,5 @@
 <?php
-define('POSTS_PER_PAGE', 5);
+define('POSTS_PER_PAGE', 10);
 require 'Parsedown.php';
 $Parsedown = new Parsedown();
 
@@ -43,6 +43,7 @@ include 'includes/header.php';
          <?php global $Parsedown; ?>
             <?php foreach ($posts as $post): ?>
                 <div class="post">
+                    <img class="avatar" src="avatar.png" />
                     <h2><a href="view.php?file=<?= htmlspecialchars($post['filename']) ?>"><?= htmlspecialchars($post['title']) ?></a></h2>
                     <div class="date"><?= htmlspecialchars($post['date']) ?></div>
 
@@ -60,7 +61,9 @@ include 'includes/header.php';
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>No posts found.</p>
+            <div style="text-align: center;" class="post">
+            <h2>Nothing Found</h2>
+            </div>
         <?php endif; ?>
 
         <div class="pagination">

@@ -10,6 +10,7 @@ include 'includes/header.php';
 ?>
 		<?php global $Parsedown; ?>
 		<div class="post">
+        <img class="avatar" src="avatar.png" />
         <h2><?= htmlspecialchars($post['title']) ?></h2>
         <div class="date"><?= htmlspecialchars($post['date']) ?></div>
         <p><?= $Parsedown->text($post['content']) ?></p>
