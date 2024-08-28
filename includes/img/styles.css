@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
+
+body {
+    font-size: 15px;
+    background: #0a0a0a url(../bck.png);
+    font-family: 'IBM Plex Mono', monospace;
+    color: #ccc;
+    padding: 30px 0 30px 0;
+ }
+
+.container {
+    width: 100%;
+    max-width: 660px;
+    padding: 10px 0 5px 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    border: 1px dotted #a17dff77;
+    border-radius: 9px;
+    box-shadow: 10px 10px 10px #00000030;
+    position: relative;
+}
+
+.title {
+    color: #a17dff;
+    margin: 0;
+    padding: 20px 0 25px 0;
+    text-align: center;
+    text-shadow: 0 0 10px #a17dff;
+    border-bottom: 1px dotted #a17dff77;
+
+}
+
+.title:hover {
+    color: #9af369;
+    text-shadow: 0 0 5px #9af369;
+}
+
+.green {
+    color: #9af369;
+    text-shadow: 0 0 5px #9af369;
+    font-size: 18px;
+
+}
+.green:hover {
+    color: #a17dff;
+    text-shadow: 0 0 10px #a17dff;
+    text-decoration: none;
+}
+
+.post {
+    margin: 30px 0 30px 0;
+    padding: 0 30px 10px 30px;
+    border-bottom: 1px dotted #a17dff77;
+}
+.postimg {
+    float: right;
+    max-width: 180px;
+    margin: 0 0 10px 10px;
+    border-radius: 10px;
+    border: 0px solid #a17dff00;
+    opacity: 0.85 !important;
+    box-shadow: 0 0 20px #3879b610;
+}
+.post img {
+    width: 100%;
+    border-radius: 12ox;
+    opacity: 0.9;
+}
+.post h2{
+    margin: 0;
+    padding: 0;
+}
+
+.date {
+    color: #a17dff;
+    font-size: 12px;
+    text-shadow: 0 0 20px #a17dff30;
+}
+
+.avatar {
+    display: block;
+    float: left;
+    margin: 0 10px 10px 0;
+    max-width: 40px;
+    border-radius: 50%;
+    border: 1px solid #a17dff44;
+    opacity: 0.9;
+    box-shadow: 0 0 3px #a17dff30;
+}
+
+.pagination {
+    font-size: 14px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    text-align: center;
+    text-shadow: 0 0 10px #a17dff;
+    border-bottom: 1px dotted #a17dff77;
+}
+
+a {
+    color: #9af369;
+    text-decoration: none;
+    text-shadow: 0 0 20px #9af36930;
+}
+a:hover {
+    color: #fff;
+}
+
+h2 {
+    color: #9af369;
+    text-shadow: 0 0 20px #9af36930;
+}
+
+h3 {
+    color: #a17dff;
+    text-shadow: 0 0 20px #a17dff30;
+}
+
+hr {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px dotted #a17dff77;
+}
+
+pre {
+  font-size: .7em;
+  line-height: 1.4em;
+  color: #a17dff;
+  padding: 1.3em;
+  border: 1px dotted #a17dff77;
+  border-radius: 6px;
+}
+
+code {
+  background-color: #00000010 !important;
+  color: #aaa !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+textarea, select, input {
+    width: 95%;
+    padding: 10px;
+    background-color: #00000040;
+    color: #fff;
+    border: 1px dotted #a17dff77;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+label {
+    text-decoration: none;
+    color: #9af36995;
+    font-size: 13px;
+}
+
+footer p {
+    font-size: 0.7rem;
+    text-align: center;
+    color: #a17dff77;
+    text-shadow: 0 0 5px #a17dff22;
+}
+
+
+.searchinput {
+    font-size: 10px;
+    background: #00000070;
+    color: #9af36999;
+	width: 120px;
+    height: 27px;
+    padding: 0 0 0 6px;
+	outline: none;
+    outline:transparent;
+    position:relative;
+    border: 1px dotted #a17dff70;
+    box-shadow: none;
+    text-transform: uppercase;
+    border-radius: 6px;
+}
+
+.search {
+    background: transparent url(../sbck.png);
+    padding-top: 10px;
+    text-align: center;
+    border-bottom: 1px dotted #a17dff50;
+}
+
+button {
+    font-size: 11px;
+    height: 29px;
+    padding: 0 12px 0 12px;
+    margin-top: -3px;
+    background: #00000080;
+    color: #a17dff99;
+    border: 1px dotted #a17dff70;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 6px;
+}
+
+button:hover {
+    background: #00000090;
+    color: #a17dff;
+    border: 1px dotted #a17dff90;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    text-shadow: 0 0 10px #a17dff;
+    border-bottom: 1px dotted #a17dff77;
+}
+
+.menu li {
+    margin: 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #a17dff;
+    font-size: 13px;
+    padding: 7px 14px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-right: 1px dotted #a17dff77;
+    border-left: 1px dotted #a17dff77;
+}
+
+.menu a:hover {
+    background-color: #a17dff10;
+    color: #ccc;
+}
+
+.column p {
+    margin: 3px;
+}
+
+.social-media a:hover {
+    color: #fff;
+}
+
+
+/* Styling for ordered lists */
+ol li {
+    list-style: none;
+    position: relative; /* For positioning pseudo-elements */
+    counter-increment: list-counter; /* Increment the counter */
+}
+
+ol li::before {
+    content: counter(list-counter) "."; /* Custom numbering format */
+    color: #699cf3; /* Number color */
+    font-size: 13px; /* Number size */
+    position: absolute; /* Positioning relative to the list item */
+    left: -20px; /* Adjust to position number */
+}
+
+/* Reset counter for nested lists */
+ol, ul {
+    counter-reset: list-counter;
+}
+
+/* Table Body */
+table td {
+    padding: 0.8rem 1rem;
+    color: #99cceb;
+    border: 1px solid #62dddc70;
+    width: 100%;
+}
+
+/* Row Hover Effect */
+table tr:hover {
+
+}
+
+/* Table Alternating Row Background */
+table tr:nth-child(even) {
+    background-color: transparent;
+}
+
+/* Table Borders */
+table, th, td {
+}
+
+/* Table Caption */
+caption {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #0aff95;
+    border: 1px solid #62dddc70;
+}
+
+#collapsibleDiv {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+#collapsibleDiv.expanded {
+    max-height: 100px; /* Adjust based on the height of the content */
+}
+
+#searchForm {
+}
+
