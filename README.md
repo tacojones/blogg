@@ -14,13 +14,27 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 An example of a form to post articles to your blog
 ```PHP
 <?php
+
+// Check if the form is submitted and has required fields
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], $_POST['content'])) {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
+    $title = trim($_POST['title']);
+    $content = trim($_POST['content']);
     $date = date('Y-m-d H:i:s');
-    $filename = time() . '.json';
-    $data = json_encode(['title' => $title, 'content' => $content, 'date' => $date, 'filename' => $filename]);
-    file_put_contents("posts/$filename", $data);
+
+    // Create a safe filename based on the current timestamp
+    $filename = time() . '.md';
+
+    // Format the post with YAML front matter and markdown content
+    $post_data = "---\n";
+    $post_data .= "title: " . htmlspecialchars($title) . "\n";
+    $post_data .= "date: " . $date . "\n";
+    $post_data .= "---\n\n";
+    $post_data .= $content;
+
+    // Save the formatted markdown content to a .md file
+    file_put_contents("posts/$filename", $post_data);
+
+    // Redirect back to the index page after posting
     header('Location: index.php');
     exit;
 }
@@ -29,16 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], $_POST['cont
 <?php
 include 'includes/header.php';
 ?>
-      <div class="post">
-        <form method="POST" action="post.php">
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" required><br>
-            <label for="content">Content:</label><br>
-            <textarea id="content" name="content" rows="10" required></textarea><br>
-            <button type="submit">Post</button>
-            <div class="back-link"></div>
-        </form>
-        </div>
+<div class="post">
+    <form method="POST" action="post.php">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="10" required></textarea><br>
+        <button type="submit">Post</button>
+        <div class="back-link"></div>
+    </form>
+</div>
 
 <?php
 include 'includes/footer.php';
