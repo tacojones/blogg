@@ -1,20 +1,58 @@
 <?php
 require 'Parsedown.php';
 $Parsedown = new Parsedown();
-$file = $_GET['file'];
-$post = json_decode(file_get_contents("posts/$file"), true);
-?>
 
-<?php
+// Get the file parameter and ensure it has the correct extension
+$file = $_GET['file'] ?? '';
+if (!preg_match('/^[a-zA-Z0-9-_]+\.md$/', $file)) {
+    die('Invalid file name.');
+}
+
+// Function to parse markdown file, extracting front matter and content
+function parse_markdown_file($file_path) {
+    $content = file_get_contents($file_path);
+    list($metadata, $content) = parse_yaml_front_matter($content);
+    
+    // Set default title and date if not present in front matter
+    $title = $metadata['title'] ?? 'Untitled Post';
+    $date = $metadata['date'] ?? date('Y-m-d');
+    
+    return [
+        'title' => $title,
+        'date' => $date,
+        'content' => $content
+    ];
+}
+
+// Custom function to parse YAML front matter manually
+function parse_yaml_front_matter($content) {
+    $metadata = [];
+    if (preg_match('/^---\s*(.*?)\s*---/s', $content, $matches)) {
+        $lines = explode("\n", trim($matches[1]));
+        foreach ($lines as $line) {
+            if (strpos($line, ':') !== false) {
+                list($key, $value) = explode(':', $line, 2);
+                $metadata[trim($key)] = trim($value);
+            }
+        }
+        // Remove front matter from content
+        $content = str_replace($matches[0], '', $content);
+    }
+    return [$metadata, $content];
+}
+
+// Parse the requested markdown file
+$post = parse_markdown_file("posts/$file");
+
 include 'includes/header.php';
 ?>
-		<?php global $Parsedown; ?>
-		<div class="post">
-        <img class="avatar" src="avatar.png" />
-        <h2><?= htmlspecialchars($post['title']) ?></h2>
-        <div class="date"><?= htmlspecialchars($post['date']) ?></div>
-        <p><?= $Parsedown->text($post['content']) ?></p>
-        </div>
+
+<div class="post">
+    <img class="avatar" src="avatar.png" />
+    <h2><?= htmlspecialchars($post['title']) ?></h2>
+    <div class="date"><?= htmlspecialchars($post['date']) ?></div>
+    <p><?= $Parsedown->text($post['content']) ?></p>
+</div>
 
 <?php
 include 'includes/footer.php';
