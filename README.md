@@ -14,7 +14,6 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 An example of a form to post articles to your blog
 ```PHP
 <?php
-
 // Check if the form is submitted and has required fields
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], $_POST['content'])) {
     $title = trim($_POST['title']);
