@@ -18,14 +18,17 @@ An example of a form to post articles to your blog
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], $_POST['content'])) {
     $title = trim($_POST['title']);
     $content = trim($_POST['content']);
-    $date = date('Y-m-d H:i:s');
+    $date = date('F j, Y'); // Human-readable date format for YAML
+    $file_date = date('Y-m-d'); // Date format for the filename
 
-    // Create a safe filename based on the current timestamp
-    $filename = time() . '.md';
+    // Sanitize title to create a safe, human-readable filename
+    $safe_title = preg_replace('/[^a-z0-9]+/i', '-', strtolower($title)); // Replace non-alphanumeric with hyphens
+    $safe_title = trim($safe_title, '-'); // Remove trailing hyphens
+    $filename = "$file_date-$safe_title.md";
 
     // Format the post with YAML front matter and markdown content
     $post_data = "---\n";
-    $post_data .= "title: " . htmlspecialchars($title) . "\n";
+    $post_data .= "title: \"" . htmlspecialchars($title) . "\"\n";
     $post_data .= "date: " . $date . "\n";
     $post_data .= "---\n\n";
     $post_data .= $content;
