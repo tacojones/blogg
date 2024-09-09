@@ -10,40 +10,6 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Read More**: blogg supports truncation with a Read More link for long articles
 - **Search**: blogg supports text searches via a search form
 
-
-An example of a form to post articles to your blog
-```PHP
-<?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['title'], $_POST['content'])) {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $date = date('Y-m-d H:i:s');
-    $filename = time() . '.json';
-    $data = json_encode(['title' => $title, 'content' => $content, 'date' => $date, 'filename' => $filename]);
-    file_put_contents("posts/$filename", $data);
-    header('Location: index.php');
-    exit;
-}
-?>
-
-<?php
-include 'includes/header.php';
-?>
-			
-        <form method="POST" action="post.php">
-            <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title" required><br>
-            <label for="content">Content:</label><br>
-            <textarea id="content" name="content" rows="10" required></textarea><br>
-            <button type="submit">Post</button>
-            <div class="back-link"></div>
-        </form>
-
-<?php
-include 'includes/footer.php';
-?>
-```
-
 ![image info](blogg_screenshot.png)
 
 ![image info](blogg_screenshot2.png)
