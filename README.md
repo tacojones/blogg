@@ -12,6 +12,13 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 
 An example of **post.php**, with EasyMDE rich text integration and Markdown support. Obviously needs to be behind a password prompt if it's on your server.
 
+
+![image info](blogg_screenshot.png)
+
+![image info](blogg_screenshot2.png)
+
+![image info](screen2.png)
+
 ```php
 <?php
 // Define the directory where posts will be saved
@@ -126,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ```
 
-Same thing converted to an editor
+### Same thing converted to an editor
 
 ```php
 
@@ -337,12 +344,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'includes/footer.php'; ?>
 
 ```
-
-![image info](blogg_screenshot.png)
-
-![image info](blogg_screenshot2.png)
-
-![image info](screen2.png)
 
 ## License
 
