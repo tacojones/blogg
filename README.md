@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'includes/footer.php'; ?>
 
 ```
-![image info](blogg_screenshot2.png)
+![image info](screenshots/post.png)
 
 And a post editor with **edit.php**
 
@@ -340,6 +340,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include 'includes/footer.php'; ?>
 
 ```
+
+![image info](screenshots/edit.png)
 
 ## License
 
