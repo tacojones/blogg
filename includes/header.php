@@ -17,7 +17,7 @@
         </video>
 
     <a href="index.php"><h2 class="title">[<span class="green">tone</span>blogg]</h2></a>
-    <a href="#" id="toggleLink"><img id="searchbutton" src="search.png" /></a>
+    <a href="#" id="toggleLink"><img id="searchbutton" src="images/search.png" /></a>
     <nav>
         <ul class="menu">
             <li><a href="index.php">blogg</a></li>
