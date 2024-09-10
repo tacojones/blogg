@@ -65,10 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         border: 1px dotted #a17dff77 !important;
         border-top: 0 !important;
     }
-
     input {
-     caret-color: #a17dff !important;
-}
+        caret-color: #a17dff !important;
+    }
     .editor-toolbar {
         border: none;
         background: #00000050;
@@ -90,16 +89,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         display: none;
     }
     .EasyMDEContainer .cm-s-easymde .CodeMirror-cursor {
-    border-color: #a17dff;
+        border-color: #a17dff;
     }
     .EasyMDEContainer .CodeMirror-fullscreen {
-    background: #000;
+        background: #000;
     }
     .editor-toolbar.fullscreen {
-    background: #000;
+        background: #000;
     }
     .editor-preview {
-    background: #000;
+        background: #000;
         border: 1px dotted #a17dff77;
     }
 </style>
