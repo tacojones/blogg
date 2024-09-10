@@ -4,7 +4,7 @@ include 'includes/header.php';
 
 <div class="post">
          <div class="column">
-            <img style="float: right; max-width: 300px; border-radius: 12px; opacity: 0.8;" src="user.jpeg">
+         <img style="float: right; max-width: 300px; border-radius: 12px; opacity: 0.8;" src="user.jpg">
         <div class="column contact-info">
             <h3>Contact Information</h3>
             <p><strong>Email:</strong> contact@example.com</p>
