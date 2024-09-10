@@ -61,7 +61,5 @@ include 'includes/header.php';
     <div class="content"><?= $Parsedown->text(htmlspecialchars($post['content'])) ?></div>
 </div>
 
-<?php
-include 'includes/footer.php';
-?>
+<?php include 'includes/footer.php'; ?>
 
