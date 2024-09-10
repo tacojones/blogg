@@ -55,7 +55,7 @@ include 'includes/header.php';
 ?>
 
 <div class="post">
-    <img class="avatar" src="avatar.png" alt="Avatar" />
+    <img class="avatar" src="images/avatar.png" alt="Avatar" />
     <h2><?= htmlspecialchars($post['title']) ?></h2>
     <div class="date"><?= htmlspecialchars($post['date']) ?></div>
     <div class="content"><?= $Parsedown->text(htmlspecialchars($post['content'])) ?></div>

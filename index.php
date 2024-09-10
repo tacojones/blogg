@@ -91,7 +91,7 @@ $total_pages = get_total_pages($search_query);
     <?php global $Parsedown; ?>
     <?php foreach ($posts as $post): ?>
         <div class="post">
-            <img class="avatar" src="avatar.png" />
+            <img class="avatar" src="images/avatar.png" />
             <h2><a href="view.php?file=<?= htmlspecialchars($post['filename']) ?>"><?= htmlspecialchars($post['title']) ?></a></h2>
             <div class="date"><?= htmlspecialchars($post['date']) ?></div>
 
