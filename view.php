@@ -2,13 +2,20 @@
 require 'Parsedown.php';
 $Parsedown = new Parsedown();
 
-// Get the file parameter and ensure it has the correct extension
+// Get the file parameter and ensure it has the correct extension for security
 $file = $_GET['file'] ?? '';
 if (!preg_match('/^[a-zA-Z0-9-_]+\.md$/', $file)) {
     die('Invalid file name.');
 }
 
-// Function to parse markdown file, extracting front matter and content
+$file_path = "posts/$file";
+
+// Check if the file exists
+if (!file_exists($file_path)) {
+    die('The requested post does not exist.');
+}
+
+// Function to parse the markdown file, extracting front matter and content
 function parse_markdown_file($file_path) {
     $content = file_get_contents($file_path);
     list($metadata, $content) = parse_yaml_front_matter($content);
@@ -32,7 +39,7 @@ function parse_yaml_front_matter($content) {
         foreach ($lines as $line) {
             if (strpos($line, ':') !== false) {
                 list($key, $value) = explode(':', $line, 2);
-                $metadata[trim($key)] = trim($value);
+                $metadata[trim($key)] = trim($value, " '\""); // Remove quotes
             }
         }
         // Remove front matter from content
@@ -42,18 +49,19 @@ function parse_yaml_front_matter($content) {
 }
 
 // Parse the requested markdown file
-$post = parse_markdown_file("posts/$file");
+$post = parse_markdown_file($file_path);
 
 include 'includes/header.php';
 ?>
 
 <div class="post">
-    <img class="avatar" src="avatar.png" />
+    <img class="avatar" src="avatar.png" alt="Avatar" />
     <h2><?= htmlspecialchars($post['title']) ?></h2>
     <div class="date"><?= htmlspecialchars($post['date']) ?></div>
-    <p><?= $Parsedown->text($post['content']) ?></p>
+    <div class="content"><?= $Parsedown->text(htmlspecialchars($post['content'])) ?></div>
 </div>
 
 <?php
 include 'includes/footer.php';
 ?>
+
