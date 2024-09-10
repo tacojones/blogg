@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogg</title>
+    <title>blogg</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="includes/styles.css">
 </head>
 <body>
