@@ -23,7 +23,7 @@
             <li><a href="index.php">blogg</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="contact.php">Contact</a></li>
-           <li><a href="table.php">Archive</a></li>
+           <li><a href="archive.php">Archive</a></li>
         </ul>
     </nav>
         <div id="collapsibleDiv" class="collapsed">
