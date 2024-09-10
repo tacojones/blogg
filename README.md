@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ```
 
-### Same thing converted to an editor
+And a post editor with **edit.php**
 
 ```php
 
