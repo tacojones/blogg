@@ -10,14 +10,13 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Read More**: blogg supports truncation with a Read More link for long articles
 - **Search**: blogg supports text searches via a search form
 
-An example of **post.php**, with EasyMDE rich text integration and Markdown support. Obviously needs to be behind a password prompt if it's on your server.
-
-
 ![image info](blogg_screenshot.png)
 
 ![image info](blogg_screenshot2.png)
 
 ![image info](screen2.png)
+
+An example of **post.php**, with EasyMDE rich text integration and Markdown support. Obviously needs to be behind a password prompt if it's on your server.
 
 ```php
 <?php
