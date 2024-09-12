@@ -51,6 +51,9 @@ function parse_yaml_front_matter($content) {
 // Parse the requested markdown file
 $post = parse_markdown_file($file_path);
 
+// Remove the <!--more--> tag from the content
+$post['content'] = str_replace('<!--more-->', '', $post['content']);
+
 include 'includes/header.php';
 ?>
 

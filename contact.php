@@ -23,6 +23,4 @@ include 'includes/header.php';
 <br>
 </div>
 
-<?php
-include 'includes/footer.php';
-?>
+<?php include 'includes/footer.php'; ?>

@@ -83,7 +83,7 @@ $grouped_posts = group_posts_by_month($posts);
 include 'includes/header.php';
 ?>
 <div class="post">
-    <h2>Blog Archive</h2>
+    <center><h3>Blog Archive</h3></center>
     <div class="search">
         <form method="GET" action="index.php">
             <input type="text" name="search" placeholder="" class="searchinput" value="">
