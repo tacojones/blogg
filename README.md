@@ -64,16 +64,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .CodeMirror {
         background-color: #00000050;
         color: #fff !important;
-        border: 1px dotted #a17dff77 !important;
+        border: 1px dotted #8c7dff77 !important;
         border-top: 0 !important;
     }
+
     input {
-        caret-color: #a17dff !important;
-    }
+        caret-color: #8c7dff !important;
+}
     .editor-toolbar {
         border: none;
         background: #00000050;
-        border: 1px dotted #a17dff77;
+        border: 1px dotted #8c7dff77;
         border-top-right-radius: 6px;
         border-top-left-radius: 6px;
         overflow: hidden;
@@ -84,14 +85,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         color: #4d3f7b;
     }
     .editor-toolbar button:hover {
-        background: #4d3f7b25;
+        background: #0a0124;
         border: 0;
     }
     .editor-toolbar i.separator {
         display: none;
     }
     .EasyMDEContainer .cm-s-easymde .CodeMirror-cursor {
-        border-color: #a17dff;
+        border-color: #8c7dff;
     }
     .EasyMDEContainer .CodeMirror-fullscreen {
         background: #000;
@@ -101,8 +102,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     .editor-preview {
         background: #000;
-        border: 1px dotted #a17dff77;
+        border: 1px dotted #8c7dff77;
     }
+    button {text-shadow: none;}
+    button:hover {text-shadow: none;}
 </style>
 
 <div class="post">
@@ -112,10 +115,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <form action="" method="POST">
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required>
+        <input style="width: 579px" type="text" id="title" name="title" required>
         <label for="content">Content (Markdown):</label>
         <textarea id="markdown-editor" name="content"></textarea>
-        <button type="submit">Create</button>
+        <div align="right"><button type="submit">Create</button></div>
     </form>
 </div>
 
@@ -173,6 +176,23 @@ if (isset($_GET['file'])) {
     }
 }
 
+// Handle the delete request
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete']) && !empty($_POST['filename'])) {
+    $fileToDelete = POSTS_DIR . '/' . basename($_POST['filename']);
+
+    // Check if the file exists before deleting
+    if (file_exists($fileToDelete)) {
+        if (unlink($fileToDelete)) {
+            header('Location: index.php');
+            exit;
+        } else {
+            $error = 'Failed to delete the file.';
+        }
+    } else {
+        $error = 'File not found.';
+    }
+}
+
 // Function to get all .md files sorted by modified date descending
 function getSortedFiles($directory)
 {
@@ -211,7 +231,7 @@ function parseFrontMatter($yaml)
 }
 
 // Handling POST request to save the file
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
     // Get the form data
     $title = trim($_POST['title']);
     $content = trim($_POST['content']);
@@ -253,18 +273,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <style>
     .CodeMirror {
         background-color: #00000050;
-        color: #fff !important;
-        border: 1px dotted #a17dff77 !important;
+        color: #ffffff99 !important;
+        font-family: 'IBM Plex Mono', monospace !important;
+        font-size: 14px !important;
+        border: 1px dotted #8c7dff77 !important;
         border-top: 0 !important;
     }
 
     input {
-     caret-color: #a17dff !important;
-}
+        caret-color: #8c7dff !important;
+    }
     .editor-toolbar {
         border: none;
         background: #00000050;
-        border: 1px dotted #a17dff77;
+        border: 1px dotted #8c7dff77;
         border-top-right-radius: 6px;
         border-top-left-radius: 6px;
         overflow: hidden;
@@ -282,18 +304,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         display: none;
     }
     .EasyMDEContainer .cm-s-easymde .CodeMirror-cursor {
-    border-color: #a17dff;
+        border-color: #8c7dff;
     }
     .EasyMDEContainer .CodeMirror-fullscreen {
-    background: #000;
+        background: #000;
     }
     .editor-toolbar.fullscreen {
-    background: #000;
+        background: #000;
     }
     .editor-preview {
-    background: #000;
-        border: 1px dotted #a17dff77;
+        background: #000;
+        border: 1px dotted #8c7dff77;
     }
+    button {text-shadow: none;}
+    button:hover {text-shadow: none;}
 </style>
 
 <div class="post">
@@ -321,13 +345,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <!-- Markdown editor form -->
-    <form action="" method="POST">
+    <form action="" method="POST" onsubmit="return confirmDelete(this);">
         <input type="hidden" name="filename" value="<?= htmlspecialchars($filename) ?>">
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="<?= htmlspecialchars($title) ?>" required>
+        <input style="width: 579px" type="text" id="title" name="title" value="<?= htmlspecialchars($title) ?>" required>
         <label for="content">Content (Markdown):</label>
         <textarea id="markdown-editor" name="content"><?= htmlspecialchars($content) ?></textarea>
-        <button type="submit">Save</button>
+        <div align="right"><button type="submit" name="save">Save</button>
+        <?php if (!empty($filename)): ?>
+            <button type="submit" name="delete" class="delete-button">Delete</button>
+        <?php endif; ?></div>
     </form>
 </div>
 
@@ -335,6 +362,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script>
     const easyMDE = new EasyMDE({ element: document.getElementById('markdown-editor') });
     easyMDE.value(`<?= addslashes($content) ?>`);
+
+    function confirmDelete(form) {
+        if (form.delete) {
+            return confirm('Are you sure you want to delete this post? This action cannot be undone.');
+        }
+        return true;
+    }
 </script>
 
 <?php include 'includes/footer.php'; ?>
