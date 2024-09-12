@@ -3,6 +3,7 @@
 body {
     font-size: 15px;
     background: #010303 url(../images/bck.png) fixed;
+    background-size: 200px 200px;
     font-family: 'IBM Plex Mono', monospace;
     color: #ccc;
     padding: 30px 0;
