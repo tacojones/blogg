@@ -344,32 +344,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
         </select>
     </form>
 
-    <!-- Markdown editor form -->
-    <form action="" method="POST" onsubmit="return confirmDelete(this);">
-        <input type="hidden" name="filename" value="<?= htmlspecialchars($filename) ?>">
-        <label for="title">Title:</label>
-        <input style="width: 579px" type="text" id="title" name="title" value="<?= htmlspecialchars($title) ?>" required>
-        <label for="content">Content (Markdown):</label>
-        <textarea id="markdown-editor" name="content"><?= htmlspecialchars($content) ?></textarea>
-        <div align="right"><button type="submit" name="save">Save</button>
+<form action="" method="POST" onsubmit="return confirmDelete(event);">
+    <input type="hidden" name="filename" value="<?= htmlspecialchars($filename) ?>">
+    <label for="title">Title:</label>
+    <input style="width: 579px" type="text" id="title" name="title" value="<?= htmlspecialchars($title) ?>" required>
+    <label for="content">Content (Markdown):</label>
+    <textarea id="markdown-editor" name="content"><?= htmlspecialchars($content) ?></textarea>
+    <div align="right">
+        <button type="submit" name="save">Save</button>
         <?php if (!empty($filename)): ?>
             <button type="submit" name="delete" class="delete-button">Delete</button>
-        <?php endif; ?></div>
-    </form>
-</div>
+        <?php endif; ?>
+    </div>
+</form>
 
 <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
 <script>
     const easyMDE = new EasyMDE({ element: document.getElementById('markdown-editor') });
     easyMDE.value(`<?= addslashes($content) ?>`);
 
-    function confirmDelete(form) {
-        if (form.delete) {
+    function confirmDelete(event) {
+        // Check if the delete button was clicked
+        if (event.submitter && event.submitter.name === 'delete') {
             return confirm('Are you sure you want to delete this post? This action cannot be undone.');
         }
         return true;
     }
 </script>
+
 
 <?php include 'includes/footer.php'; ?>
 
