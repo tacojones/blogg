@@ -9,7 +9,7 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Pagination**: blogg supports pagination for browsing posts
 - **Read More**: blogg supports truncation with a Read More link for long articles
 - **Search**: blogg supports text searches via a search form
-- **Code Highlighting**: blogg supports markdown syntax highlighting with highilight.js
+- **Code Highlighting**: blogg supports markdown syntax highlighting with highlight.js
 
 ![image info](screenshots/main.png)
 
