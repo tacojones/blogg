@@ -1,8 +1,4 @@
-<center>
-
 ![image info](screenshots/logo.png)
-
- </center>
 
 # blogg: A Flat-File Blog Script
 
