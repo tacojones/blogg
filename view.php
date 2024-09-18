@@ -61,7 +61,7 @@ include 'includes/header.php';
     <img class="avatar" src="images/avatar.png" alt="Avatar" />
     <h2><?= htmlspecialchars($post['title']) ?></h2>
     <div class="date"><?= htmlspecialchars($post['date']) ?></div>
-    <div class="content"><?= $Parsedown->text($post['content']) ?></div> <!-- Removed htmlspecialchars() -->
+    <?= $Parsedown->text($post['content']) ?>
 </div>
 
 <?php include 'includes/footer.php'; ?>
