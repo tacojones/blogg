@@ -1,4 +1,8 @@
-<p style="text-align:center;"> ![image info](screenshots/logo.png) </p>
+<p style="text-align:center">
+
+![image info](screenshots/logo.png)
+
+ </p>
 
 # blogg: A Flat-File Blog Script
 
