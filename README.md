@@ -12,8 +12,6 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Search**: Hunt through your archive with the precision of a replicant on the run.
 - **Code Highlighting**: Let your code glow in the shadows with syntax highlighting powered by highlight.js.
 
-Plug into [Blogg on GitHub](https://github.com/tacojones/blogg) and fight back against the web of control. In this city, freedom is a scarce commodity—take it where you can.
-
 ![image info](screenshots/main.png)
 
 An example of **post.php**, with EasyMDE rich text integration and Markdown support. Obviously needs to be behind a password prompt if it's on your server.
