@@ -1,6 +1,8 @@
 ![image info](screenshots/logo.png)
 
-<center><img src="screenshots/logo.png" /></center>
+
+
+<div align="center"><img src="screenshots/logo.png" /></div>
 
 # blogg: A Flat-File Blog Script
 
