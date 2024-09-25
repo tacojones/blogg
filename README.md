@@ -1,7 +1,3 @@
-![image info](screenshots/logo.png)
-
-
-
 <div align="center"><img src="screenshots/logo.png" /></div>
 
 # blogg: A Flat-File Blog Script
