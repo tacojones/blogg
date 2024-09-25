@@ -10,7 +10,7 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Pagination**: Scroll through your thoughts like you’re sifting through the endless haze of the megacity.
 - **Read More**: Slice your transmissions with a Read More link—because no one has time for your manifesto all at once.
 - **Search**: Hunt through your archive with the precision of a replicant on the run.
-- **Code Highlighting**: Let your code glow in the shadows with syntax highlighting powered by highlight.js.
+- **Code Highlighting**: Let your code gitter in the dark with syntax highlighting powered by highlight.js.
 
 ![image info](screenshots/main.png)
 
