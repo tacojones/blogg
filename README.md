@@ -12,6 +12,8 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Search**: blogg supports text searches via a search form
 - **Code Highlighting**: blogg supports markdown syntax highlighting with highlight.js
 
+[Live](http://nebulung.rf.gd/)
+
 ![image info](screenshots/main.png)
 
 An example of **post.php**, with EasyMDE rich text integration and Markdown support. Obviously needs to be behind a password prompt if it's on your server.
