@@ -5,12 +5,12 @@
 This is a simple flat-file blog script written in PHP. It allows users to display static blog entries with subjects, date and time stamps, and supports markdown, pagination and search. I wanted a simple, portable and searchable database of blog posts and couldn't find a solution, so I made one with everything I needed and nothing more.
 
 ### Features:
-- **Flat-File Storage**: Your posts are nothing more than raw data—just text files in the cold, hard void.
-- **Markdown Support**: Write your code in Markdown, Parsedown will handle the rest—because in this dystopia, clarity is a rare luxury.
-- **Pagination**: Scroll through your thoughts like you’re sifting through the endless haze of the megacity.
-- **Read More**: Slice your transmissions with a Read More link—because no one has time for your manifesto all at once.
-- **Search**: Hunt through your archive with the precision of a replicant on the run.
-- **Code Highlighting**: Let your code gitter in the dark with syntax highlighting powered by highlight.js.
+- **Flat-File Storage**: Posts are stored as individual text files in a directory
+- **Markdown Support**: blogg features markdown support with Parsedown
+- **Pagination**: blogg supports pagination for browsing posts
+- **Read More**: blogg supports truncation with a Read More link for long articles
+- **Search**: blogg supports text searches via a search form
+- **Code Highlighting**: blogg supports markdown syntax highlighting with highlight.js
 
 ![image info](screenshots/main.png)
 
