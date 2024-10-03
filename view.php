@@ -2,6 +2,10 @@
 require 'Parsedown.php';
 $Parsedown = new Parsedown();
 
+// Define your desired date formats
+const FILE_DATE_FORMAT = 'Y-m-d'; // Format for file names
+const DISPLAY_DATE_FORMAT = 'F j, Y'; // Format for displaying post dates
+
 // Get the file parameter and ensure it has the correct extension for security
 $file = isset($_GET['file']) ? basename($_GET['file']) : '';
 if (!preg_match('/^[a-zA-Z0-9-_]+\.md$/', $file)) {
@@ -20,7 +24,7 @@ function parse_markdown_file(string $file_path): array {
     if (!file_exists($file_path)) {
         return [
             'title' => 'Untitled Post',
-            'date' => date('Y-m-d'),
+            'date' => date(DISPLAY_DATE_FORMAT), // Use display format for missing date
             'content' => 'This post could not be found.'
         ];
     }
@@ -30,8 +34,10 @@ function parse_markdown_file(string $file_path): array {
     
     // Set default title and date if not present in front matter
     $title = htmlspecialchars($metadata['title'] ?? 'Untitled Post');
-    $date = htmlspecialchars($metadata['date'] ?? date('Y-m-d'));
     
+    // Format the date from front matter to a specific format
+    $date = !empty($metadata['date']) ? date(DISPLAY_DATE_FORMAT, strtotime($metadata['date'])) : date(DISPLAY_DATE_FORMAT);
+
     return [
         'title' => $title,
         'date' => $date,
