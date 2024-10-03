@@ -3,7 +3,7 @@ require 'Parsedown.php';
 $Parsedown = new Parsedown();
 
 // Get the file parameter and ensure it has the correct extension for security
-$file = $_GET['file'] ?? '';
+$file = isset($_GET['file']) ? basename($_GET['file']) : '';
 if (!preg_match('/^[a-zA-Z0-9-_]+\.md$/', $file)) {
     die('Invalid file name.');
 }
@@ -16,13 +16,21 @@ if (!file_exists($file_path)) {
 }
 
 // Function to parse the markdown file, extracting front matter and content
-function parse_markdown_file($file_path) {
+function parse_markdown_file(string $file_path): array {
+    if (!file_exists($file_path)) {
+        return [
+            'title' => 'Untitled Post',
+            'date' => date('Y-m-d'),
+            'content' => 'This post could not be found.'
+        ];
+    }
+
     $content = file_get_contents($file_path);
     list($metadata, $content) = parse_yaml_front_matter($content);
     
     // Set default title and date if not present in front matter
-    $title = $metadata['title'] ?? 'Untitled Post';
-    $date = $metadata['date'] ?? date('Y-m-d');
+    $title = htmlspecialchars($metadata['title'] ?? 'Untitled Post');
+    $date = htmlspecialchars($metadata['date'] ?? date('Y-m-d'));
     
     return [
         'title' => $title,
@@ -32,7 +40,7 @@ function parse_markdown_file($file_path) {
 }
 
 // Custom function to parse YAML front matter manually
-function parse_yaml_front_matter($content) {
+function parse_yaml_front_matter(string $content): array {
     $metadata = [];
     if (preg_match('/^---\s*(.*?)\s*---/s', $content, $matches)) {
         $lines = explode("\n", trim($matches[1]));
@@ -65,4 +73,3 @@ include 'includes/header.php';
 </div>
 
 <?php include 'includes/footer.php'; ?>
-
