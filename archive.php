@@ -2,8 +2,13 @@
 // Directory containing markdown files
 $directory = 'posts';
 
+// Ensure the posts directory exists
+if (!is_dir($directory)) {
+    die('Posts directory does not exist.');
+}
+
 // Function to manually parse YAML front matter
-function parse_markdown($filepath) {
+function parse_markdown(string $filepath): array {
     $file_contents = file_get_contents($filepath);
 
     // Split content into front matter and markdown content
@@ -23,14 +28,14 @@ function parse_markdown($filepath) {
 }
 
 // Basic YAML parser for key-value pairs
-function parse_yaml($yaml_string) {
+function parse_yaml(string $yaml_string): array {
     $lines = explode("\n", $yaml_string);
     $data = [];
 
     foreach ($lines as $line) {
         if (strpos($line, ': ') !== false) {
             list($key, $value) = explode(': ', trim($line), 2);
-            $data[$key] = trim($value, '"\''); // Remove quotes if present
+            $data[trim($key)] = trim($value, '"\''); // Remove quotes if present
         }
     }
 
@@ -38,7 +43,7 @@ function parse_yaml($yaml_string) {
 }
 
 // Read markdown files and parse their front matter
-function get_posts($directory) {
+function get_posts(string $directory): array {
     $posts = [];
     $files = scandir($directory, SCANDIR_SORT_DESCENDING);
 
@@ -63,7 +68,7 @@ function get_posts($directory) {
 }
 
 // Group posts by month
-function group_posts_by_month($posts) {
+function group_posts_by_month(array $posts): array {
     $grouped_posts = [];
 
     foreach ($posts as $post) {
@@ -79,14 +84,12 @@ $posts = get_posts($directory);
 $grouped_posts = group_posts_by_month($posts);
 ?>
 
-<?php
-include 'includes/header.php';
-?>
+<?php include 'includes/header.php'; ?>
 <div class="post">
     <center><h3>Blog Archive</h3></center>
     <div class="search">
         <form method="GET" action="index.php">
-            <input type="text" name="search" placeholder="" class="searchinput" value="">
+            <input type="text" name="search" placeholder="Search posts..." class="searchinput" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
             <button type="submit">Search</button>
         </form>
     </div>
@@ -95,7 +98,11 @@ include 'includes/header.php';
             <h3><?= htmlspecialchars($month) ?></h3>
             <ul>
                 <?php foreach ($posts as $post): ?>
-                    <li><a href="view.php?file=<?= urlencode($post['filename']) ?>"><?= htmlspecialchars($post['title']) ?></a></li>
+                    <li>
+                        <a href="view.php?file=<?= urlencode($post['filename']) ?>">
+                            <?= htmlspecialchars($post['title']) ?>
+                        </a>
+                    </li>
                 <?php endforeach; ?>
             </ul>
         <?php endforeach; ?>
@@ -103,7 +110,4 @@ include 'includes/header.php';
         <p>No posts available.</p>
     <?php endif; ?>
 </div>
-<?php
-include 'includes/footer.php';
-?>
-
+<?php include 'includes/footer.php'; ?>
