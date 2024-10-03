@@ -4,8 +4,13 @@ require 'Parsedown.php';
 
 $Parsedown = new Parsedown();
 
+// Define your desired date formats
+const FILE_DATE_FORMAT = 'Y-m-d'; // Format for file names
+const DISPLAY_DATE_FORMAT = 'F j, Y'; // Format for displaying post dates
+
 function get_posts(int $page, string $search_query = ''): array {
     $post_dir = 'posts';
+    
     // Get all markdown files from the 'posts' directory
     $files = array_filter(scandir($post_dir), function($file) {
         return $file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'md';
@@ -22,6 +27,7 @@ function get_posts(int $page, string $search_query = ''): array {
     $posts = [];
     foreach ($files as $file) {
         $post = parse_markdown("$post_dir/$file");
+        
         // Filter posts by search query if provided
         if ($search_query === '' || 
             stripos($post['title'], $search_query) !== false || 
@@ -35,6 +41,7 @@ function get_posts(int $page, string $search_query = ''): array {
 
 function get_total_pages(string $search_query = ''): int {
     $post_dir = 'posts';
+
     // Get all markdown files from the 'posts' directory
     $files = array_filter(scandir($post_dir), function($file) use ($post_dir) {
         return $file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'md';
@@ -64,6 +71,7 @@ function parse_markdown(string $filepath): array {
     }
 
     $file_contents = file_get_contents($filepath);
+    
     // Split content into front matter and markdown content using regex
     if (preg_match('/---\s*(.*?)\s*---\s*(.*)/s', $file_contents, $matches)) {
         $front_matter = parse_yaml($matches[1]);
@@ -73,9 +81,12 @@ function parse_markdown(string $filepath): array {
         $content = trim($file_contents);
     }
 
+    // Format the date from front matter to a specific format
+    $formatted_date = !empty($front_matter['date']) ? date(DISPLAY_DATE_FORMAT, strtotime($front_matter['date'])) : '';
+    
     return [
         'title' => htmlspecialchars($front_matter['title'] ?? 'Untitled'),
-        'date' => htmlspecialchars($front_matter['date'] ?? ''),
+        'date' => $formatted_date,
         'content' => $content,
     ];
 }
