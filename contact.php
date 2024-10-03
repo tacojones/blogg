@@ -1,6 +1,4 @@
-<?php
-include 'includes/header.php';
-?>
+<?php include 'includes/header.php'; ?>
 
 <div class="post">
          <div class="column">
@@ -19,8 +17,8 @@ include 'includes/header.php';
             <p><a href="https://linkedin.com/in/yourprofile" target="_blank"><strong>LinkedIn</strong>: Your Profile</a></p><br>
         </div>
         </div>
-<br>
-<br>
+<br />
+<br />
 </div>
 
 <?php include 'includes/footer.php'; ?>
