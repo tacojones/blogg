@@ -12,7 +12,7 @@ This is a simple flat-file blog script written in PHP. It allows users to displa
 - **Search**: blogg supports text searches via a search form
 - **Code Highlighting**: blogg supports markdown syntax highlighting with highlight.js
 
-[Live](http://nebulung.rf.gd/)
+[Live Demo](http://nebulung.rf.gd/)
 
 ![image info](screenshots/main.png)
 
