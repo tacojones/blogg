@@ -5,31 +5,35 @@ $Parsedown = new Parsedown();
 $Parsedown->setSafeMode(true); // Prevents unsafe HTML output
 
 // Define your desired date formats
-const FILE_DATE_FORMAT = 'Y-m-d'; // Format for file names
-const DISPLAY_DATE_FORMAT = 'F j, Y'; // Format for displaying post dates
+const FILE_DATE_FORMAT    = 'Y-m-d';    // Format for file names
+const DISPLAY_DATE_FORMAT = 'F j, Y';   // Format for displaying post dates
 
 // Get the 'file' parameter securely
 $file = filter_input(INPUT_GET, 'file', FILTER_SANITIZE_STRING) ?? '';
 
 if (empty($file) || !preg_match('/^[a-zA-Z0-9-_]+\.md$/', $file)) {
     http_response_code(400);
-    die('Invalid file name.');
+    include 'includes/400.php'; // Custom 400 Bad Request error page
+    exit;
 }
 
 $file_path = realpath(__DIR__ . "/posts/$file");
 
 // Check if the file exists and is within the 'posts' directory
-if (!$file_path || strpos($file_path, realpath(__DIR__ . '/posts')) !== 0) {
+$posts_dir = realpath(__DIR__ . '/posts');
+
+if (!$file_path || strpos($file_path, $posts_dir) !== 0) {
     http_response_code(404);
-    die('The requested post does not exist.');
+    include 'includes/404.php'; // Custom 404 Not Found error page
+    exit;
 }
 
 // Function to parse the markdown file, extracting front matter and content
 function parse_markdown_file(string $file_path): array {
     if (!file_exists($file_path)) {
         return [
-            'title' => 'Untitled Post',
-            'date' => date(DISPLAY_DATE_FORMAT), // Use display format for missing date
+            'title'   => 'Untitled Post',
+            'date'    => date(DISPLAY_DATE_FORMAT), // Use display format for missing date
             'content' => 'This post could not be found.',
         ];
     }
@@ -38,10 +42,10 @@ function parse_markdown_file(string $file_path): array {
     list($metadata, $content) = parse_yaml_front_matter($content);
 
     // Set default title if not present in front matter
-    $title = htmlspecialchars($metadata['title'] ?? 'Untitled Post', ENT_QUOTES, 'UTF-8');
+    $title = $metadata['title'] ?? 'Untitled Post';
 
     // Parse the date from front matter
-    $date_str = $metadata['date'] ?? '';
+    $date_str  = $metadata['date'] ?? '';
     $timestamp = strtotime($date_str);
 
     if ($timestamp) {
@@ -49,12 +53,12 @@ function parse_markdown_file(string $file_path): array {
     } else {
         // Use file modification time if date is not valid
         $timestamp = filemtime($file_path);
-        $date = date(DISPLAY_DATE_FORMAT, $timestamp);
+        $date      = date(DISPLAY_DATE_FORMAT, $timestamp);
     }
 
     return [
-        'title' => $title,
-        'date' => $date,
+        'title'   => $title,
+        'date'    => $date,
         'content' => $content,
     ];
 }
@@ -66,7 +70,7 @@ function parse_yaml_front_matter(string $content): array {
         $lines = preg_split('/\r\n|\n|\r/', trim($matches[1]));
         foreach ($lines as $line) {
             if (preg_match('/^\s*([^\s:]+)\s*:\s*(.*?)\s*$/', $line, $mv)) {
-                $key = trim($mv[1]);
+                $key   = trim($mv[1]);
                 $value = trim($mv[2], " '\""); // Remove quotes
                 $metadata[$key] = $value;
             }
