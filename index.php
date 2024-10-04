@@ -6,7 +6,7 @@ $Parsedown = new Parsedown();
 $Parsedown->setSafeMode(true); // Ensure safe parsing to prevent XSS
 
 // Define your desired date formats
-const FILE_DATE_FORMAT = 'Y-m-d'; // Format for file names
+const FILE_DATE_FORMAT = 'Y-m-d';    // Format for file names (unused in this code)
 const DISPLAY_DATE_FORMAT = 'F j, Y'; // Format for displaying post dates
 
 function get_filtered_posts(string $search_query = ''): array {
@@ -34,10 +34,25 @@ function get_filtered_posts(string $search_query = ''): array {
 function get_posts(int $page, string $search_query = ''): array {
     $posts = get_filtered_posts($search_query);
 
-    // Sort posts by date (newest first)
+    // Sort posts by date (newest first), handling null timestamps
     usort($posts, function($a, $b) {
-        $a_time = $a['timestamp'] ?? 0;
-        $b_time = $b['timestamp'] ?? 0;
+        $a_time = $a['timestamp'];
+        $b_time = $b['timestamp'];
+
+        // If both timestamps are null, they are considered equal
+        if ($a_time === null && $b_time === null) {
+            return 0;
+        }
+
+        // Posts with valid dates come before those without
+        if ($a_time === null) {
+            return 1;
+        }
+        if ($b_time === null) {
+            return -1;
+        }
+
+        // Both timestamps are valid, sort by date (newest first)
         return $b_time - $a_time;
     });
 
@@ -54,17 +69,17 @@ function get_total_pages(string $search_query = ''): int {
 function parse_markdown(string $filepath): array {
     if (!file_exists($filepath)) {
         return [
-            'title' => 'Untitled',
-            'date' => '',
-            'timestamp' => 0,
-            'content' => '',
+            'title'     => 'Untitled',
+            'date'      => '',
+            'timestamp' => null,
+            'content'   => '',
         ];
     }
 
     $file_contents = file_get_contents($filepath);
 
     // Split content into front matter and markdown content using regex
-    if (preg_match('/---\s*(.*?)\s*---\s*(.*)/s', $file_contents, $matches)) {
+    if (preg_match('/^---\s*(.*?)\s*---\s*(.*)$/s', $file_contents, $matches)) {
         $front_matter = parse_yaml($matches[1]);
         $content = trim($matches[2]);
     } else {
@@ -75,13 +90,19 @@ function parse_markdown(string $filepath): array {
     // Parse the date from front matter
     $date_str = $front_matter['date'] ?? '';
     $timestamp = strtotime($date_str);
-    $formatted_date = $timestamp ? date(DISPLAY_DATE_FORMAT, $timestamp) : '';
+
+    if ($timestamp !== false) {
+        $formatted_date = date(DISPLAY_DATE_FORMAT, $timestamp);
+    } else {
+        $timestamp = null;
+        $formatted_date = ''; // Or you can set a default display date if desired
+    }
 
     return [
-        'title' => htmlspecialchars($front_matter['title'] ?? 'Untitled'),
-        'date' => $formatted_date,
-        'timestamp' => $timestamp ?: filemtime($filepath),
-        'content' => $content,
+        'title'     => $front_matter['title'] ?? 'Untitled',
+        'date'      => $formatted_date,
+        'timestamp' => $timestamp,
+        'content'   => $content,
     ];
 }
 
@@ -113,8 +134,8 @@ $total_pages = get_total_pages($search_query);
     <?php foreach ($posts as $post): ?>
         <div class="post">
             <img class="avatar" src="images/avatar.png" alt="Avatar" />
-            <h2><a href="view.php?file=<?= urlencode($post['filename']) ?>"><?= htmlspecialchars($post['title']) ?></a></h2>
-            <div class="date"><?= htmlspecialchars($post['date']) ?></div>
+            <h2><a href="view.php?file=<?= urlencode($post['filename']) ?>"><?= htmlspecialchars($post['title'], ENT_QUOTES, 'UTF-8') ?></a></h2>
+            <div class="date"><?= htmlspecialchars($post['date'], ENT_QUOTES, 'UTF-8') ?></div>
 
             <?php
             // Check if there's a 'Read More' tag in the post content
