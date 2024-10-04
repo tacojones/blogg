@@ -1,77 +1,68 @@
 <?php
-define('POSTS_PER_PAGE', 5);
+const POSTS_PER_PAGE = 5;
 require 'Parsedown.php';
 
 $Parsedown = new Parsedown();
+$Parsedown->setSafeMode(true); // Ensure safe parsing to prevent XSS
 
 // Define your desired date formats
 const FILE_DATE_FORMAT = 'Y-m-d'; // Format for file names
 const DISPLAY_DATE_FORMAT = 'F j, Y'; // Format for displaying post dates
 
-function get_posts(int $page, string $search_query = ''): array {
+function get_filtered_posts(string $search_query = ''): array {
     $post_dir = 'posts';
-    
-    // Get all markdown files from the 'posts' directory
-    $files = array_filter(scandir($post_dir), function($file) {
-        return $file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'md';
-    });
-
-    // Sort files by modification time (newest first)
-    usort($files, function($a, $b) use ($post_dir) {
-        return filemtime("$post_dir/$b") - filemtime("$post_dir/$a");
-    });
-
-    // Paginate the sorted files
-    $files = array_slice($files, ($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE);
-
     $posts = [];
-    foreach ($files as $file) {
-        $post = parse_markdown("$post_dir/$file");
-        
+
+    // Get all markdown files from the 'posts' directory
+    $files = glob("$post_dir/*.md");
+
+    foreach ($files as $filepath) {
+        $post = parse_markdown($filepath);
+
         // Filter posts by search query if provided
-        if ($search_query === '' || 
-            stripos($post['title'], $search_query) !== false || 
+        if ($search_query === '' ||
+            stripos($post['title'], $search_query) !== false ||
             stripos($post['content'], $search_query) !== false) {
-            $post['filename'] = $file;
+            $post['filename'] = basename($filepath);
             $posts[] = $post;
         }
     }
+
     return $posts;
 }
 
-function get_total_pages(string $search_query = ''): int {
-    $post_dir = 'posts';
+function get_posts(int $page, string $search_query = ''): array {
+    $posts = get_filtered_posts($search_query);
 
-    // Get all markdown files from the 'posts' directory
-    $files = array_filter(scandir($post_dir), function($file) use ($post_dir) {
-        return $file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'md';
+    // Sort posts by date (newest first)
+    usort($posts, function($a, $b) {
+        $a_time = $a['timestamp'] ?? 0;
+        $b_time = $b['timestamp'] ?? 0;
+        return $b_time - $a_time;
     });
 
-    // Filter and count valid posts based on search query
-    $valid_files = array_filter($files, function($file) use ($post_dir, $search_query) {
-        $post = parse_markdown("$post_dir/$file");
-        return $search_query === '' || 
-               stripos($post['title'], $search_query) !== false || 
-               stripos($post['content'], $search_query) !== false;
-    });
-
-    // Calculate total pages based on the filtered posts
-    $total_posts = count($valid_files);
-    return ceil($total_posts / POSTS_PER_PAGE);
+    // Paginate the sorted posts
+    return array_slice($posts, ($page - 1) * POSTS_PER_PAGE, POSTS_PER_PAGE);
 }
 
-// Function to manually parse YAML front matter and content from .md files
+function get_total_pages(string $search_query = ''): int {
+    $posts = get_filtered_posts($search_query);
+    return ceil(count($posts) / POSTS_PER_PAGE);
+}
+
+// Function to parse YAML front matter and content from .md files
 function parse_markdown(string $filepath): array {
     if (!file_exists($filepath)) {
         return [
             'title' => 'Untitled',
             'date' => '',
+            'timestamp' => 0,
             'content' => '',
         ];
     }
 
     $file_contents = file_get_contents($filepath);
-    
+
     // Split content into front matter and markdown content using regex
     if (preg_match('/---\s*(.*?)\s*---\s*(.*)/s', $file_contents, $matches)) {
         $front_matter = parse_yaml($matches[1]);
@@ -81,32 +72,36 @@ function parse_markdown(string $filepath): array {
         $content = trim($file_contents);
     }
 
-    // Format the date from front matter to a specific format
-    $formatted_date = !empty($front_matter['date']) ? date(DISPLAY_DATE_FORMAT, strtotime($front_matter['date'])) : '';
-    
+    // Parse the date from front matter
+    $date_str = $front_matter['date'] ?? '';
+    $timestamp = strtotime($date_str);
+    $formatted_date = $timestamp ? date(DISPLAY_DATE_FORMAT, $timestamp) : '';
+
     return [
         'title' => htmlspecialchars($front_matter['title'] ?? 'Untitled'),
         'date' => $formatted_date,
+        'timestamp' => $timestamp ?: filemtime($filepath),
         'content' => $content,
     ];
 }
 
-// Basic YAML parser for key-value pairs
+// Improved YAML parser
 function parse_yaml(string $yaml_string): array {
     $lines = explode("\n", $yaml_string);
     $data = [];
 
     foreach ($lines as $line) {
-        if (strpos($line, ': ') !== false) {
-            list($key, $value) = explode(': ', trim($line), 2);
-            $data[trim($key)] = trim($value, '"\''); // Remove quotes if present
+        if (preg_match('/^\s*([^\s:]+)\s*:\s*(.*?)\s*$/', $line, $matches)) {
+            $key = trim($matches[1]);
+            $value = trim($matches[2], '"\''); // Remove quotes if present
+            $data[$key] = $value;
         }
     }
 
     return $data;
 }
 
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $search_query = isset($_GET['search']) ? trim($_GET['search']) : '';
 $posts = get_posts($page, $search_query);
 $total_pages = get_total_pages($search_query);
@@ -118,8 +113,8 @@ $total_pages = get_total_pages($search_query);
     <?php foreach ($posts as $post): ?>
         <div class="post">
             <img class="avatar" src="images/avatar.png" alt="Avatar" />
-            <h2><a href="view.php?file=<?= urlencode($post['filename']) ?>"><?= $post['title'] ?></a></h2>
-            <div class="date"><?= $post['date'] ?></div>
+            <h2><a href="view.php?file=<?= urlencode($post['filename']) ?>"><?= htmlspecialchars($post['title']) ?></a></h2>
+            <div class="date"><?= htmlspecialchars($post['date']) ?></div>
 
             <?php
             // Check if there's a 'Read More' tag in the post content
@@ -142,11 +137,11 @@ $total_pages = get_total_pages($search_query);
 
 <div class="pagination">
     <?php if ($page > 1): ?>
-        <a href="index.php?page=<?= $page - 1 ?>&search=<?= urlencode($search_query) ?>">&laquo; Previous</a>
+        <a href="index.php?page=<?= $page - 1 ?>&amp;search=<?= urlencode($search_query) ?>">&laquo; Previous</a>
     <?php endif; ?>
 
     <?php if ($page < $total_pages): ?>
-        <a href="index.php?page=<?= $page + 1 ?>&search=<?= urlencode($search_query) ?>">Next &raquo;</a>
+        <a href="index.php?page=<?= $page + 1 ?>&amp;search=<?= urlencode($search_query) ?>">Next &raquo;</a>
     <?php endif; ?>
 </div>
 
