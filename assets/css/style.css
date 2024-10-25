@@ -1,0 +1,306 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+  background: #0e1920;
+  color: #66767f;
+  font-family: 'Roboto', "Lato", "Trebuchet MS", sans-serif;
+  font-size: 13px;
+  font-weight: 100;
+  line-height: 1.6em;
+  padding: 3em;
+}
+
+#top { 
+	background: #101c23 url(/assets/img/nebulogo_top_background2.png);
+	background-position: 0px 0px;
+	background-repeat: repeat-x;
+	animation: animatedBackground 28s linear infinite;
+	width: 650px; 
+	height: 177px;
+    margin: 0 auto;
+}
+
+#menubar {
+   width: 650px;
+   background: transparent url(/assets/img/mnubck.png) top no-repeat;
+   margin: 0 auto;
+   margin-top: -40px;
+   position: relative;
+}
+
+#menul li{list-style:none; margin:0; padding:0;}
+#men{float:left;}
+#menul{background:transparent url(/assets/img/menu.png) top left no-repeat; height:29px; width:206px; padding: 0; margin: 0}
+#men a{display:block; height:29px; width:51px; text-decoration:none}
+#men a:hover{color:#43271B; background:transparent url(/assets/img/menu.png) top left no-repeat}
+a#menu1:hover{background-position:-0px -29px}
+a#menu2:hover{background-position:-51px -29px}
+a#menu3:hover{background-position:-102px -29px}
+a#menu4:hover{background-position:-153px -29px}
+
+#btm {
+  background: #111e26 url(/assets/img/btm.png);
+  height: 7px;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 650px;
+}
+
+.container {
+    max-width: 571px;
+    margin: 0 auto;
+    background: #111e26 url(/assets/img/mnbck.png) center repeat-y;
+    padding: 60px 40px 10px 40px;
+    border: 0;
+}
+
+/* Post Styles */
+.post {
+   padding-bottom: 39px;
+  margin-bottom: 39px;
+  background: transparent url(/assets/img/sep.png) bottom center no-repeat
+}
+
+.post h1, .post h2 {
+
+}
+
+.post h3 {
+  font-family: "Orbitron", "Teko", "Open Sans Condensed", "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  text-transform: capitalize;
+  text-align: center;
+  text-shadow: none;
+  background: -webkit-linear-gradient(#4a724e, #38573D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-font-smoothing: none; 
+  -moz-osx-font-smoothing: unset; 
+  font-smoothing: unset; 
+  font-smooth: never; 
+  filter: contrast(1);
+} 
+
+.post img {
+
+}
+
+.date {
+  color: #223948;
+  font-family: "Teko", "Open Sans Condensed", "Open Sans", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: -8px;
+  margin-bottom: 1.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Links */
+a {
+    outline: 0;
+}
+
+a: hover, a: active, a: focus {
+    outline: none;
+}
+
+a {
+  color: #33556a;
+  text-decoration: none;
+  transition: color ease 0.1s;
+  -webkit-transition: color ease 0.1s;
+}
+
+a:visited {
+  color: #33556a;
+}
+
+.post h3 a, .post  h3 a:visited {
+  color: #4a724e;
+}
+
+a:focus,
+a:hover {
+  color: #4a724e;
+  outline: 0;
+}
+
+/* Code Blocks */
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  opacity: 0.9;
+}
+
+code {
+  background-color: #0f1b22 !important;
+  color: #66767f !important;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.3em;
+  border: 1px solid #13222b;
+  padding: .6em;
+  border-radius: 4px;
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.1);
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+}
+
+/* Form Elements */
+input, select, textarea {
+  background: #0f1b22;
+  font-size: 11px;
+  border: 1px solid #13222b;
+  color: #46694a;
+  padding: 4px 2px 4px 4px;
+  border-radius: 4px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+}
+
+input::-moz-focus-inner {
+    border: 0;
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
+
+}
+
+.pagination a,
+.pagination span {
+    font-size: 11px;
+    display: inline-block;
+    margin: 0;
+    padding: 6px 12px;
+    color: #66767f;
+    text-decoration: none;
+    background-color: #13222b;
+    border-radius: 4px;
+}
+
+.pagination a:hover {
+    background-color: #172833; /* Warm Gold on Hover */
+}
+
+.pagination .current-page {
+    background-color: #172833; /* Warm Gold for Current Page */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer p {
+font-family: "Pixelify Sans", 'Candy', 'Drift', 'Press Start 2P', cursive; /* Use the pixel font */
+    color:  #273c4f;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    margin: 0;
+    text-shadow: 1px 1px 1px #00000040
+}
+
+@keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position: 2048px 0; }
+}
+
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Label Styling */
+label {
+    font-size: 14px;
+    color: #b0b8ba80;
+}
+
+/* Input and Textarea Styling */
+input[type="text"], textarea {
+    padding: 10px;
+    font-size: 15px;
+}
+
+input[type="text"]::placeholder, textarea::placeholder {
+    color: #848871;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    background-color: #152c2e;
+    color: #45686b;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #182636;
+    color: #48607a;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #152c2e;
+    color: #45686b;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 140px;
+}
+
+input[type="submit"]:hover {
+    background-color: #182636;
+    color: #48607a;
+}
+
+/* Error Message Styling */
+.error {
+    color: #ff5f56;
+    font-size: 14px;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .container {
+        padding: 20px;
+    }
+}
+
