@@ -36,7 +36,7 @@ This is a simple PHP blog script that parses Markdown posts with YAML front matt
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/php-blog-script.git
+   git clone https://github.com/tacojonese/blogg.git
 
 2. **Setup posts and pages**:
 
@@ -291,9 +291,8 @@ include 'footer.php';
 
 This project is open source and available under the MIT License.
 
-
 ## Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/your-username/php-blog-script/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/tacojones/blogg/issues).
 
 
