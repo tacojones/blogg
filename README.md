@@ -17,7 +17,6 @@ This is a simple PHP blog script that parses Markdown posts with YAML front matt
 - Static page support for `/pages` directory.
 - Markdown parsing using Parsedown.
 - Custom YAML parser for post metadata.
-- Displays the post's date and title automatically.
 - Supports custom date formatting and multiple formats for flexibility.
 - Handles special `<!--more-->` tag for controlling content display.
 
@@ -31,12 +30,13 @@ This is a simple PHP blog script that parses Markdown posts with YAML front matt
 - `Parsedown.php`: Handles Markdown parsing.
 - `YAMLParser.php`: Parses YAML front matter.
 - `post.php`: Main blog script that handles rendering both posts and static pages.
+- `search.php`: Text search of posts via a search form.
 
 ## Usage
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/tacojonese/blogg.git
+   git clone https://github.com/tacojones/blogg.git
 
 2. **Setup posts and pages**:
 
@@ -253,6 +253,7 @@ include 'header.php';
 </head>
 <body>
 
+<div class="post">
 <form method="POST" action="">
     <label for="post_title">Post Title:</label>
     <input type="text" name="post_title" id="post_title" required>
@@ -260,22 +261,17 @@ include 'header.php';
     <label for="markdown">Content:</label>
     <textarea name="markdown" id="markdown" rows="10" required></textarea>
 
-    <div align="right"><input type="submit" value="POST"></div>
+    <div align="right"><button type="submit">POST</button></div>
 
     <label for="article_link">Article Link: (optional)</label> <div id="error_message" class="error"></div>
     <input type="text" name="article_link" id="article_link">
     <div align="right"><button type="button" onclick="fetchMetadata()">Fetch Metadata</button></div>
 </form>
-
+</div>
 <?php
 include 'footer.php';
 ?>
 ```
-
-## Dependencies
-
- - [Parsedown](https://parsedown.org/): A fast Markdown parser.
- - Custom YAML parser.
 
 ## Security
 
@@ -285,7 +281,6 @@ include 'footer.php';
 ## Customization
 
  - You can modify the header.php and footer.php files to customize the layout and styling of the blog.
- - To add new features, such as pagination, archives, or additional metadata fields, modify the logic in post.php.
 
 ## License
 
