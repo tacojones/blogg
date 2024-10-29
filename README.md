@@ -275,8 +275,20 @@ include 'footer.php';
 
 ## Security
 
- - The script includes file path sanitization using the safeFilePath() function to prevent directory traversal attacks.
- - Be sure to keep your server and PHP environment up-to-date to avoid security risks.
+1. **Safe File Path Validation**  
+   Uses a `safeFilePath()` helper function to validate requested file paths. This prevents directory traversal attacks by removing any potentially malicious characters and verifying that paths remain within the designated `/posts/` directory.
+
+2. **URL-Safe Slug Generation**  
+   The `generateSlug()` function sanitizes titles to create URL-friendly slugs by removing any non-alphanumeric characters and hyphens. This prevents accidental or malicious URL injection.
+
+3. **HTML Escaping for User Input**  
+   All user-inputted search queries are sanitized with `htmlspecialchars()` to prevent Cross-Site Scripting (XSS) attacks when displaying search results. This ensures any special characters in the query are safely escaped in HTML output.
+
+4. **Sanitized Output for Post Titles and Dates**  
+   Post metadata like titles and dates are also sanitized before outputting, reducing the risk of unintended HTML or script injection from YAML front matter.
+
+5. **Secure Directories and Grouped File Access**  
+   The script searches only within specific subfolders, organized by year and month, making it more secure by limiting the scope of the search to a structured set of directories.
 
 ## Customization
 
