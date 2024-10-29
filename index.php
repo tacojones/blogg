@@ -164,7 +164,7 @@ foreach ($files as $file) {
 
     // Sanitize title and output it safely
     $title = $yaml['title'] ?? 'Untitled';
-    $title = htmlspecialchars($title, ENT_QUOTES, 'UTF-8');
+    $title = htmlspecialchars_decode($title, ENT_QUOTES);
 
     // Extract the content before the readmore tag
     $content_parts = explode('<!--more-->', $md_content);
@@ -175,6 +175,7 @@ foreach ($files as $file) {
 
     // Display the post
     echo '<div class="post">';
+    echo '<div class="avatar"></div>';
     echo '<h3><a href="post.php?slug=' . htmlspecialchars($slug, ENT_QUOTES, 'UTF-8') . '">' . $title . '</a></h3>';
 
     $date = getPostDate($file);

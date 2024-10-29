@@ -14,18 +14,23 @@ function safeFilePath($base_dir, $requested_file) {
     return ($full_path !== false && strpos($full_path, $base_dir) === 0) ? $full_path : false;
 }
 
+// Recursive function to get all markdown files in subdirectories
+function getMarkdownFiles($dir) {
+    $files = [];
+    $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
+    foreach ($iterator as $file) {
+        if ($file->isFile() && $file->getExtension() === 'md') {
+            $files[] = $file->getPathname();
+        }
+    }
+    return $files;
+}
+
 // Sanitize slugs to ensure they are URL-friendly
 function generateSlug($string) {
-    // Convert the string to lowercase
     $slug = strtolower($string);
-    
-    // Remove all characters that are not alphanumeric or hyphens
     $slug = preg_replace('/[^a-z0-9-]+/', '-', $slug);
-    
-    // Trim any hyphens from the start and end of the slug
-    $slug = trim($slug, '-');
-    
-    return $slug;
+    return trim($slug, '-');
 }
 
 // Get the search query
@@ -36,15 +41,14 @@ if ($query === '') {
     exit;
 }
 
-// Escape special characters for safe search
 $search_query = htmlspecialchars($query, ENT_QUOTES, 'UTF-8');
 
-// Get all Markdown files from the posts directory
-$files = glob($posts_dir . '/*.md');
+// Get all Markdown files from posts directory and subdirectories
+$files = getMarkdownFiles($posts_dir);
 $results = [];
 
 foreach ($files as $file_path) {
-    $safe_file_path = safeFilePath($posts_dir, basename($file_path));
+    $safe_file_path = safeFilePath($posts_dir, str_replace($posts_dir . '/', '', $file_path));
     if ($safe_file_path === false) {
         continue;
     }
@@ -70,19 +74,19 @@ foreach ($files as $file_path) {
     // Normalize keys to lowercase
     $yaml = array_change_key_case($yaml, CASE_LOWER);
 
-    // Get the title for the search
+    // Get the title and date for the search
     $title = isset($yaml['title']) ? $yaml['title'] : 'Untitled';
+    $date = isset($yaml['date']) ? $yaml['date'] : 'Unknown Date';
 
     // Check if the search query matches the title or content
     if (stripos($title, $search_query) !== false || stripos($md_content, $search_query) !== false) {
-        // Generate slug from title
-        $post_slug = isset($yaml['title']) ? generateSlug($yaml['title']) : generateSlug(pathinfo($file_path, PATHINFO_FILENAME));
+        $post_slug = generateSlug($title);
 
         // Add result to the results array
         $results[] = [
             'title' => htmlspecialchars($title, ENT_QUOTES, 'UTF-8'),
             'slug' => $post_slug,
-            'date' => $yaml['date'] ?? null,
+            'date' => htmlspecialchars($date, ENT_QUOTES, 'UTF-8'),
         ];
     }
 }
@@ -91,7 +95,7 @@ foreach ($files as $file_path) {
 include __DIR__ . '/header.php';
 ?>
 
-<h1>Search Results for "<?php echo $search_query; ?>"</h1>
+<h3>Search Results for "<?php echo $search_query; ?>"</h3>
 
 <?php if (count($results) > 0): ?>
     <ul>
@@ -100,14 +104,12 @@ include __DIR__ . '/header.php';
             <a href="post.php?slug=<?php echo urlencode($post['slug']); ?>">
                 <?php echo $post['title']; ?>
             </a>
-            <?php if ($post['date']): ?>
-                <span>(<?php echo htmlspecialchars($post['date'], ENT_QUOTES, 'UTF-8'); ?>)</span>
-            <?php endif; ?>
+            <span>(<?php echo $post['date']; ?>)</span>
         </li>
     <?php endforeach; ?>
     </ul>
 <?php else: ?>
-    <p>No results found for "<?php echo $search_query; ?>".</p>
+    <h3>No results found for "<?php echo $search_query; ?>".</h3>
 <?php endif; ?>
 
 <?php

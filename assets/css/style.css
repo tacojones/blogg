@@ -1,187 +1,271 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Teko:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+/* Body Styling */
 body {
-  background: #0e1920;
-  color: #66767f;
-  font-family: 'Roboto', "Lato", "Trebuchet MS", sans-serif;
-  font-size: 13px;
-  font-weight: 100;
-  line-height: 1.6em;
-  padding: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #080808 url(../img/bck.png); /* Black background */
+    background-size: 200px 200px;
+    color: #b0b8ba;
+    font-family: 'IBM Plex Mono', monospace;
+    padding: 50px 0;
 }
 
-#top { 
-	background: #101c23 url(/assets/img/nebulogo_top_background2.png);
-	background-position: 0px 0px;
-	background-repeat: repeat-x;
-	animation: animatedBackground 28s linear infinite;
-	width: 650px; 
-	height: 177px;
-    margin: 0 auto;
-}
-
-#menubar {
-   width: 650px;
-   background: transparent url(/assets/img/mnubck.png) top no-repeat;
-   margin: 0 auto;
-   margin-top: -40px;
-   position: relative;
-}
-
-#menul li{list-style:none; margin:0; padding:0;}
-#men{float:left;}
-#menul{background:transparent url(/assets/img/menu.png) top left no-repeat; height:29px; width:206px; padding: 0; margin: 0}
-#men a{display:block; height:29px; width:51px; text-decoration:none}
-#men a:hover{color:#43271B; background:transparent url(/assets/img/menu.png) top left no-repeat}
-a#menu1:hover{background-position:-0px -29px}
-a#menu2:hover{background-position:-51px -29px}
-a#menu3:hover{background-position:-102px -29px}
-a#menu4:hover{background-position:-153px -29px}
-
-#btm {
-  background: #111e26 url(/assets/img/btm.png);
-  height: 7px;
-  text-align: center;
-  margin: 0 auto;
-  max-width: 650px;
-}
-
+/* Main Container */
 .container {
-    max-width: 571px;
+    width: 80%;  /* Reduced width for smaller screens */
+    max-width: 600px;
+    padding: 35px 50px;
+    background: rgba(0, 0, 0, 0.9) url(../img/cbck.png) top center no-repeat;
+    text-align: center;
+    border: 1px solid #00248050;
+    position: relative;
+    border-radius: 10px;
+    backdrop-filter: blur(0px);
+    box-shadow: 1px 1px 50px #001d6450;
+}
+
+/* Header Styling */
+header h1 {
+    color: #9af369;
+    font-weight: 100;
+    margin: 0;
+}
+
+/* Menu Styling */
+.menu {
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;  /* Allows items to wrap on smaller screens */
+    color: #262f5c; /* Bright green color typical of terminal text */
+}
+
+.menu a {
+    padding: 6px;
+    font-size: 14px;
+    font-weight: 100;
+    color: #8c7dff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: color 0.25s; /* Transition for hover effect */
+    text-shadow: 0 0 1px #8c7dff; /* Optional hover glow effect */
+}
+
+.menu a:hover {
+    font-weight: 100;
+    color: #9af369; /* Change color on hover */
+    text-shadow: 0 0 2px #9af369; /* Optional hover glow effect */
+}
+
+/* Collapsible Search Box */
+.search-box {
+    display: block;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.search-box.show {
+    opacity: 1;
+    max-height: 100px;
+}
+
+.search-box form {
+    display: flex;
+    justify-content: center;
     margin: 0 auto;
-    background: #111e26 url(/assets/img/mnbck.png) center repeat-y;
-    padding: 60px 40px 10px 40px;
-    border: 0;
+    margin-top: 10px;
+    width: 80%;
+    max-width: 300px;
 }
 
-/* Post Styles */
+.search-box input[type="text"] {
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 100;
+  background: #00000080;
+  width: 150px;
+  color: #9af369;
+  border: 1px dotted #262f5c;
+}
+
+.search-box input[type="submit"] {
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 100;
+  background: #00000080;
+  width: 60px;
+  margin-left: 4px;
+  color: #8c7dff;
+  cursor: pointer;
+  border: 1px dotted #262f5c;
+}
+
 .post {
-   padding-bottom: 39px;
-  margin-bottom: 39px;
-  background: transparent url(/assets/img/sep.png) bottom center no-repeat
+    font-size: 15px;
+    margin: 30px 0 0 0;
+    border-bottom: 0px dotted #1862ad;
+    text-align: left;
+    position: relative; /* Make the post position relative for absolute positioning of the square */
 }
 
-.post h1, .post h2 {
+.post img {
+    width: 100%;
+    border-radius: 9px;
+    opacity: 0.5;
+}
 
+/* Separator after each post */
+.post::after {
+    content: "➳➳➳➳ ◈ ➳➳➳➳";
+    display: block;
+    text-align: center;
+    font-family: monospace;
+    font-size: 1.2em;
+    color: #262f5c;
+    margin-top: 40px;
+}
+
+/* Hide separator on the last post */
+.last-post::after {
+    display: none;
+}
+
+.avatar {
+    background: transparent url(../img/avatar.jpeg) center center;
+    background-size: cover;
+    display: block;
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/*.post:not(:last-child) {
+    border-bottom: none;
+}*/
+
+.date {
+    color: #8c7dff;
+    font-size: 12px;
+    margin: 0 0 20px 49px;
+    border-bottom: 1px dotted #262f5c;
+}
+
+a {
+    color: #9af369;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #8c7dff;
+}
+
+h2 {
+    color: #9af369; 
+}
+
+h3 {
+    color: #8c7dff;
+}
+
+.post h2 {
+    font-size: 19px;
 }
 
 .post h3 {
-  font-family: "Orbitron", "Teko", "Open Sans Condensed", "Open Sans", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  margin: 0;
-  padding: 0;
-  text-transform: capitalize;
-  text-align: center;
-  text-shadow: none;
-  background: -webkit-linear-gradient(#4a724e, #38573D);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-font-smoothing: none; 
-  -moz-osx-font-smoothing: unset; 
-  font-smoothing: unset; 
-  font-smooth: never; 
-  filter: contrast(1);
-} 
-
-.post img {
-
+    margin: 0; padding: 0;
+    color: #9af369; 
+    margin-left: 49px;
 }
 
-.date {
-  color: #223948;
-  font-family: "Teko", "Open Sans Condensed", "Open Sans", sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  margin-top: -8px;
-  margin-bottom: 1.2em;
-  text-align: center;
-  text-transform: uppercase;
+ul, li {
+    margin: 0;
 }
 
-/* Links */
-a {
-    outline: 0;
+
+hr {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px dotted #8c7dff77;
 }
 
-a: hover, a: active, a: focus {
-    outline: none;
+blockquote {
+  color: #65b2ff; /* Neon cyan text */
+  border-left: 1px dotted #8c7dff77;
+  padding: 0 20px;
+  font-size: 0.9em;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  font-style: italic;
 }
 
-a {
-  color: #33556a;
-  text-decoration: none;
-  transition: color ease 0.1s;
-  -webkit-transition: color ease 0.1s;
-}
-
-a:visited {
-  color: #33556a;
-}
-
-.post h3 a, .post  h3 a:visited {
-  color: #4a724e;
-}
-
-a:focus,
-a:hover {
-  color: #4a724e;
-  outline: 0;
-}
-
-/* Code Blocks */
 pre {
-  white-space: pre;
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
-  word-wrap: break-word;
-  opacity: 0.9;
+    font-size: 10px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    background: rgba(0, 0, 0, 0.5) url(../img/cbck.png) top center no-repeat;
+    color: #262f5c;
 }
 
 code {
-  background-color: #0f1b22 !important;
-  color: #66767f !important;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 11px;
-  font-weight: 400;
-  line-height: 1.3em;
-  border: 1px solid #13222b;
-  padding: .6em;
-  border-radius: 4px;
-  -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.1);
-  -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.1);
-  box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.1);
-  margin-bottom: 10px;
+    background-color: transparent !important;
 }
 
-/* Form Elements */
-input, select, textarea {
-  background: #0f1b22;
-  font-size: 11px;
-  border: 1px solid #13222b;
-  color: #46694a;
-  padding: 4px 2px 4px 4px;
-  border-radius: 4px;
-}
-
-input:focus, select:focus, textarea:focus {
+textarea, select, input {
+    width: 100%;
+    padding: 10px;
+    background-color: #1862ad08;
+    color: #ccc;
+    border: 1px solid #1862ad40;
+    border-radius: 4px;
+    margin-bottom: 10px;
     outline: none;
 }
 
-input::-moz-focus-inner {
+label {
+    text-decoration: none;
+    color: #8c7dff;
+    font-size: 13px;
+    font-weight: 100;
+    text-shadow: 0 0 2px #8c7dff;
+}
+
+button {
+    font-size: 12px;
+    padding: 8px 18px;
     border: 0;
+    background: #1862ad70;
+    color: #ffffff80;
+    cursor: pointer;
+    outline: none;
+    border-radius: 2px;
+    text-transform: uppercase;
+    border-top: 1px solid #ffffff07;
+}
+
+button:hover {
+    color: #ffffff90;
+    background: #272139;
+
 }
 
 /* Pagination */
 .pagination {
     text-align: center;
-
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 0px dotted #1862ad;
 }
 
 .pagination a,
@@ -190,117 +274,75 @@ input::-moz-focus-inner {
     display: inline-block;
     margin: 0;
     padding: 6px 12px;
-    color: #66767f;
+    color: #ffffff70; /* Light Gray for Pagination */
     text-decoration: none;
-    background-color: #13222b;
+    background-color: #8c7dff20; /* Cyan for Pagination */
     border-radius: 4px;
+
 }
 
 .pagination a:hover {
-    background-color: #172833; /* Warm Gold on Hover */
+    background-color: #8c7dff50; /* Warm Gold on Hover */
 }
 
 .pagination .current-page {
-    background-color: #172833; /* Warm Gold for Current Page */
+    background-color: #8c7dff50; /* Warm Gold for Current Page */
 }
 
 /* Footer */
 footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    font-weight: 100;
+    color: #262f5c;
     text-align: center;
-    margin-top: 20px;
+    text-shadow: 0 0 2px #262f5c;
 }
 
-footer p {
-font-family: "Pixelify Sans", 'Candy', 'Drift', 'Press Start 2P', cursive; /* Use the pixel font */
-    color:  #273c4f;
-    font-size: 0.7rem;
-    letter-spacing: 0.5px;
-    margin: 0;
-    text-shadow: 1px 1px 1px #00000040
-}
-
-@keyframes animatedBackground {
-	from { background-position: 0 0; }
-	to { background-position: 2048px 0; }
-}
-
-
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Label Styling */
-label {
-    font-size: 14px;
-    color: #b0b8ba80;
-}
-
-/* Input and Textarea Styling */
-input[type="text"], textarea {
-    padding: 10px;
-    font-size: 15px;
-}
-
-input[type="text"]::placeholder, textarea::placeholder {
-    color: #848871;
-}
-
-/* Button Styling */
-button {
-    padding: 10px 20px;
-    background-color: #152c2e;
-    color: #45686b;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-button:hover {
-    background-color: #182636;
-    color: #48607a;
-}
-
-/* Submit Button */
-input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #152c2e;
-    color: #45686b;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    width: 140px;
-}
-
-input[type="submit"]:hover {
-    background-color: #182636;
-    color: #48607a;
-}
-
-/* Error Message Styling */
-.error {
-    color: #ff5f56;
-    font-size: 14px;
-}
-
-/* Responsive Adjustments */
-@media screen and (max-width: 600px) {
-    body {
-        padding: 20px;
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 1.5rem;
     }
 
-    header h1 {
-        font-size: 1.8em;
+    .menu ul {
+        gap: 1rem;
+    }
+
+    .search-box input[type="text"] {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .search-icon {
+        font-size: 1rem;
+    }
+
+    main, footer {
+        font-size: 0.9rem;
+    }
+
+    .menu ul {
+        flex-direction: column;  /* Stack menu items on top of each other */
+        align-items: center;
     }
 
     .container {
-        padding: 20px;
+        padding: 1rem;
     }
+}
+
+
+#header {
+
+}
+.letter {
+    transition: color 0.3s ease;
 }
 

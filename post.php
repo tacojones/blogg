@@ -142,6 +142,7 @@ if (isset($_GET['page'])) {
     include __DIR__ . '/header.php';
     ?>
     <div class="post">
+    <div class="avatar"></div>
         <?php
         // Fetch and decode the title
         $title = $yaml['title'] ?? 'Untitled';
