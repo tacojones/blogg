@@ -60,6 +60,8 @@ Content of the post goes here in Markdown.
 
 4. **Customizing date formats**: The script supports multiple date formats for flexibility in displaying post dates. Modify this section in post.php to add or change formats.
 
+![blogg](screenshot.png)
+
 Example script to post to the blog. Includes metadata fetching from article URLs.
 
 ```php
