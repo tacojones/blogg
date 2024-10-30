@@ -71,6 +71,7 @@ header h1 {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease, opacity 0.4s ease;
+    margin-bottom: 40px;
 }
 
 .search-box.show {
@@ -110,11 +111,8 @@ header h1 {
 }
 
 .post {
-    font-size: 15px;
-    margin: 30px 0 0 0;
-    border-bottom: 0px dotted #1862ad;
+    font-size: 14px;
     text-align: left;
-    position: relative; /* Make the post position relative for absolute positioning of the square */
 }
 
 .post img {
@@ -125,13 +123,13 @@ header h1 {
 
 /* Separator after each post */
 .post::after {
-    content: "➳➳➳➳ ◈ ➳➳➳➳";
+    content: " . ";
     display: block;
     text-align: center;
     font-family: monospace;
     font-size: 1.2em;
-    color: #262f5c;
-    margin-top: 40px;
+    color: black;
+    margin-top: 30px;
 }
 
 /* Hide separator on the last post */
@@ -214,7 +212,7 @@ pre {
     font-size: 10px;
     white-space: pre-wrap;
     word-wrap: break-word;
-    background: rgba(0, 0, 0, 0.5) url(../img/cbck.png) top center no-repeat;
+    background: rgba(0, 0, 0, 0.0);
     color: #262f5c;
 }
 
@@ -340,9 +338,134 @@ footer {
 
 
 #header {
-
 }
+
 .letter {
     transition: color 0.3s ease;
 }
 
+.youtube-audio {
+  display: flex;               /* Use flexbox for alignment */
+  justify-content: center;     /* Center items horizontally */
+  align-items: center;         /* Center items vertically (optional) */
+  margin: 20px 0;             /* Add some vertical spacing */
+}
+
+.youtube-audio img {
+  max-width: none;            /* Keep the original size of the image */
+  width: auto;               /* Maintain aspect ratio */
+}
+
+.media-player {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #1862ad10;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid #1862ad20;
+    margin-bottom: 3px;
+    box-shadow: 0 0 2px #1862ad10;
+}
+
+.media-player button {
+    background-color: #1862ad10;
+    color: #8c7dff99;
+    padding: 8px 18px;
+    border: 0;
+    margin: 0 3px;
+    cursor: pointer;
+    border: 1px solid #1862ad20;
+    border-radius: 4px;
+    box-shadow: 0 0 2px #1862ad10;
+}
+
+.media-player button:hover {
+    background-color: #1862ad50;
+    color: #8c7dff;
+}
+
+/* General styles for the progress bar */
+.progress-bar {
+    -webkit-appearance: none; /* Removes default styling */
+    appearance: none;
+    width: 100%; /* Full width */
+    height: 6px; /* Height of the progress bar */
+    background-color: #00000010; /* Base track color */
+    border-radius: 3px;
+    outline: none;
+    overflow: hidden;
+    border: none;
+    margin: 0;
+    padding: 1px;
+    border: 1px solid #1862ad20;
+    box-shadow: 0 0 2px #1862ad10;
+}
+/* Progress fill (for Chrome, Safari, Edge) */
+.progress-bar::-webkit-slider-runnable-track {
+    background-color: transparent; /* Track color */
+}
+
+/* Firefox track */
+.progress-bar::-moz-range-track {
+    background-color: transparent;
+    height: 6px; /* Height of the progress bar */
+    border-radius: 5px;
+}
+
+/* Styling for the filled portion of the bar (WebKit) */
+.progress-bar::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #26f7ca, #333); /* Progress color */
+}
+
+/* Styling for the thumb (WebKit) */
+.progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 6px;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+/* Firefox thumb */
+.progress-bar::-moz-range-thumb {
+    width: 15px;
+    height: 6px;
+    background-color: #8c7dff60;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Firefox thumb */
+.progress-bar::-moz-range-thumb:hover {
+    background-color: #8c7dff90;
+    box-shadow: 0 0 10px #8c7dff90;
+}
+
+/* For Internet Explorer */
+.progress-bar::-ms-track {
+    background-color: transparent;
+    border-color: transparent;
+    color: transparent;
+    width: 100%;
+    height: 5px;
+}
+
+.progress-bar::-ms-fill-lower {
+    background: transparent;
+}
+
+.progress-bar::-ms-fill-upper {
+    background: transparent;
+}
+
+.progress-bar::-ms-thumb {
+    width: 15px;
+    height: 5px;
+    background-color: #8c7dff60;
+    cursor: pointer;
+}
