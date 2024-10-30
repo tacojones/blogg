@@ -46,11 +46,10 @@ This is a simple PHP blog script that parses Markdown posts with YAML front matt
 Example post format:
 ```markdown
 ---
-title: "My First Post"
-date: 2024-10-23
-slug: my-first-post
+title: Volkor X
+date: 2024-10-29 20:20:06
 ---
-Content of the post goes here in Markdown.
+Post is here in Markdown and HTML.
 ```
 
 3. **Access posts and pages**:
