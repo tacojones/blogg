@@ -253,7 +253,6 @@ include 'header.php';
 </script>
 </head>
 <body>
-
 <div class="post">
 <form method="POST" action="">
     <label for="post_title">Post Title:</label>
