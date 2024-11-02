@@ -11,15 +11,15 @@ $parsedown->setSafeMode(false);
 
 // Helper function to ensure safe paths
 function safeFilePath($base_dir, $requested_file) {
-    // Remove null bytes, ../ and other malicious attempts
-    $requested_file = str_replace(["\0", "../", "..\\"], '', $requested_file);
+    // Use basename to prevent directory traversal attempts
+    $requested_file = basename(str_replace(["\0", "../", "..\\"], '', $requested_file));
     $full_path = realpath($base_dir . '/' . $requested_file);
 
     // Ensure the file is still within the base directory
     if ($full_path !== false && strpos($full_path, $base_dir) === 0) {
         return $full_path;
     }
-    
+
     return false;
 }
 
@@ -39,12 +39,16 @@ function scanDirectoryForPosts($dir) {
 if (isset($_GET['page'])) {
     // Handle static page from /pages
     $page = basename($_GET['page']); // Get the page file name safely
-    
+
     // Sanitize and validate the path
     $pagePath = safeFilePath($pages_dir, $page);
-    
+
     if ($pagePath && file_exists($pagePath)) {
         $content = file_get_contents($pagePath);
+        if ($content === false) {
+            echo 'Error loading page content.';
+            exit;
+        }
         $html_content = $parsedown->text($content);
 
         include __DIR__ . '/header.php';
@@ -201,4 +205,3 @@ if (isset($_GET['page'])) {
     exit;
 }
 ?>
-
