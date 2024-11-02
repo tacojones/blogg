@@ -18,13 +18,16 @@ body {
 .container {
     width: 80%;  /* Reduced width for smaller screens */
     max-width: 610px;
-    padding: 35px 50px;
+    padding: 35px 50px 0 50px;
     background: rgba(0, 0, 0, 0.9) url(../img/cbck.png) top center no-repeat;
     text-align: center;
-    border: 1px solid #01154a52;
+    /* border: 5px solid #00091f;      Inner border */
+    border: 1px solid #01154a99;
+    outline: 12px solid #01154a30;      /* Outer border */
+    outline-offset: 0;            /* Position the outline closer */           /* Position the outline closer */
     position: relative;
-    border-radius: 10px;
-    box-shadow: 1px 1px 50px #001d6460;
+    border-radius: 12px;
+    box-shadow: 0 0 0 24px #01154a20;
 }
 
 /* Header Styling */
@@ -111,6 +114,7 @@ header h1 {
 .post {
     font-size: 14px;
     text-align: left;
+    margin-bottom: 80px;
 }
 
 .post img {
@@ -118,24 +122,7 @@ header h1 {
     margin: 0 auto;
     display: flex;
     border-radius: 9px;
-    opacity: 0.5;
-    border: 0px solid #1862ad65;
-}
-
-/* Separator after each post */
-.post::after {
-    content: " . ";
-    display: block;
-    text-align: center;
-    font-family: monospace;
-    font-size: 1.2em;
-    color: black;
-    margin-top: 30px;
-}
-
-/* Hide separator on the last post */
-.last-post::after {
-    display: none;
+    opacity: 0.7;
 }
 
 .avatar {
@@ -147,6 +134,7 @@ header h1 {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    opacity: 0.9;
 }
 
 /*.post:not(:last-child) {
@@ -163,6 +151,15 @@ header h1 {
 a {
     color: #9af369;
     text-decoration: none;
+}
+
+/* Style for outgoing links */
+a[href^="http"]:not([href*="yourdomain.com"])::after {
+    content: "⤴"; /* Up arrow symbol */
+    font-size: 0.9em;
+    color: #8c7dff;
+    margin: 0;
+    padding: 0;
 }
 
 a:hover {
@@ -237,8 +234,9 @@ code {
     background-color: transparent !important;
 }
 
+/* Form elements styling */
 textarea, select, input {
-    width: 100%;
+    width: 100%; /* Full width of the parent .post container */
     padding: 10px;
     background-color: #01154a20;
     color: #ccc;
@@ -246,6 +244,32 @@ textarea, select, input {
     border-radius: 4px;
     margin-bottom: 10px;
     outline: none;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+    resize: vertical; /* Enables only vertical resizing */
+}
+
+button {
+    padding: 10px 20px;
+    background: #01154a !important; /* Blue to teal gradient */
+    color: #e3f6ff; /* Light, complementary font color */
+    font-weight: 100;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect with a brighter inner glow */
+button:hover {
+    background: #01154a !important; /* Blue to teal gradient */
+    color: #ffffff !important;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Active effect for pressed look */
+button:active {
+    transform: translateY(1px); /* Slight press down effect */
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 label {
@@ -256,34 +280,11 @@ label {
     text-shadow: 0 0 2px #477aff90;
 }
 
-button {
-    font-size: 12px;
-    padding: 8px 18px;
-    border: 0;
-    margin: 0;
-    background: #01154a20;
-    color: #477aff;
-    border: 1px solid #01154a99;
-    cursor: pointer;
-    outline: none;
-    border-radius: 4px;
-    text-transform: uppercase;
-    font-weight: 100;
-    text-shadow: 0 0 2px #477aff50;
-}
-
-button:hover {
-    color: #ffffff90;
-    background: #272139;
-
-}
-
 /* Pagination */
 .pagination {
     text-align: center;
     margin-top: 10px;
     padding-bottom: 10px;
-    border-bottom: 0px dotted #1862ad;
 }
 
 .pagination a,
@@ -292,36 +293,35 @@ button:hover {
     display: inline-block;
     margin: 0;
     padding: 6px 12px;
-    color: #ffffff70; /* Light Gray for Pagination */
+    color: #65b2ff; /* Light Gray for Pagination */
     text-decoration: none;
-    background-color: #8c7dff20; /* Cyan for Pagination */
+    background-color: #01154a20; /* Cyan for Pagination */
     border-radius: 4px;
-
+    border: 1px solid #01154a99;
 }
 
 .pagination a:hover {
-    background-color: #8c7dff50; /* Warm Gold on Hover */
+    background-color: #01154a50; /* Warm Gold on Hover */
 }
 
 .pagination .current-page {
-    background-color: #8c7dff50; /* Warm Gold for Current Page */
+    background-color: #01154a50; /* Warm Gold for Current Page */
 }
 
 /* Footer */
 footer {
     margin-top: 2rem;
     font-size: 0.8rem;
-    font-weight: 100;
-    color: #262f5c;
+    font-weight: 300;
+    color: #01154a;
     text-align: center;
-    text-shadow: 0 0 2px #262f5c;
+    text-shadow: 0 0 3px #01154a60;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
     .container {
         width: 90%;
-        padding: 1.5rem;
     }
 }
 
@@ -349,12 +349,13 @@ footer {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background-color: #01154a20;
+    background-color: #01154a40;
     border-radius: 4px;
     width: 100%;
+    height: 50px;
     border: 1px solid #01154a99;
     margin-bottom: 3px;
-    box-shadow: 0 0 2px #1862ad10;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
 }
 
 .media-player button {
@@ -366,7 +367,6 @@ footer {
     cursor: pointer;
     border: 1px solid #01154a99;
     border-radius: 4px;
-    box-shadow: 0 0 2px #1862ad10;
 }
 
 .media-player button:hover {
@@ -379,16 +379,14 @@ footer {
     -webkit-appearance: none; /* Removes default styling */
     appearance: none;
     width: 100%; /* Full width */
-    height: 6px; /* Height of the progress bar */
-    background-color: #00000010; /* Base track color */
-    border-radius: 3px;
+    height: 1px; /* Height of the progress bar */
+    background-color: #01154a00; /* Base track color */
+    border-radius: 2px;
     outline: none;
-    overflow: hidden;
     border: none;
     margin: 0 6px 0 0;
     padding: 1px;
     border: 1px solid #01154a99;
-    box-shadow: 0 0 2px #1862ad10;
 }
 /* Progress fill (for Chrome, Safari, Edge) */
 .progress-bar::-webkit-slider-runnable-track {
@@ -398,40 +396,41 @@ footer {
 /* Firefox track */
 .progress-bar::-moz-range-track {
     background-color: transparent;
-    height: 6px; /* Height of the progress bar */
-    border-radius: 5px;
+    height: 8px; /* Height of the progress bar */
+    border-radius: 0px;
 }
 
 /* Styling for the filled portion of the bar (WebKit) */
 .progress-bar::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, #26f7ca, #333); /* Progress color */
+    background: #fff; /* Progress color */
 }
 
 /* Styling for the thumb (WebKit) */
 .progress-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 15px;
-    height: 6px;
-    background-color: transparent;
+    width: 50px;
+    height: 8px;
+    background-color: #8c7dff99;
     cursor: pointer;
     border: none;
+    border-radius: 2px;
 }
 
 /* Firefox thumb */
 .progress-bar::-moz-range-thumb {
-    width: 15px;
-    height: 6px;
+    width: 50px;
+    height: 8px;
     background-color: #8c7dff99;
     cursor: pointer;
     border: none;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 /* Firefox thumb */
 .progress-bar::-moz-range-thumb:hover {
-    background-color: #8c7dff90;
-    box-shadow: 0 0 10px #8c7dff90;
+    background-color: #8c7dff;
+    box-shadow: 0 0 10px #8c7dff99;
 }
 
 /* For Internet Explorer */
@@ -440,7 +439,7 @@ footer {
     border-color: transparent;
     color: transparent;
     width: 100%;
-    height: 5px;
+    height: 8px;
 }
 
 .progress-bar::-ms-fill-lower {
@@ -452,8 +451,10 @@ footer {
 }
 
 .progress-bar::-ms-thumb {
-    width: 15px;
-    height: 5px;
-    background-color: #8c7dff60;
+    width: 50px;
+    height: 8px;
+    background-color: #8c7dff99;
     cursor: pointer;
+    border: none;
+    border-radius: 3px;
 }
