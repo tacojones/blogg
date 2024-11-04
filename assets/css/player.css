@@ -14,7 +14,7 @@
 
 .media-player button {
     background-color: transparent !important;
-    color: #65b2ff50 !important;
+    color: #2a4c74 !important;
     padding: 0;
     border: 0;
     width: 40px;
@@ -58,7 +58,7 @@
 
 /* Styling for the filled portion of the bar (WebKit) */
 .progress-bar::-webkit-slider-runnable-track {
-    background: #65b2ff50; /* Progress color */
+    background: #2a4c74; /* Progress color */
 }
 
 /* Styling for the thumb (WebKit) */
@@ -67,7 +67,7 @@
     appearance: none;
     width: 40px;
     height: 8px;
-    background-color: #65b2ff50;
+    background-color: #2a4c74;
     cursor: pointer;
     border: none;
     border-radius: 2px;
@@ -77,7 +77,7 @@
 .progress-bar::-moz-range-thumb {
     width: 40px;
     height: 8px;
-    background-color: #65b2ff50;
+    background-color: #2a4c74;
     cursor: pointer;
     border: none;
     border-radius: 2px;
@@ -141,8 +141,8 @@
 
 /* Play Icon Styling */
 .play-icon, .pause-icon, .stop-icon {
-    fill: #65b2ff50 !important;
-    filter: drop-shadow(0 0 3px #65b2ff40); /* Blue glow */
+    fill: #2a4c74 !important;
+    filter: drop-shadow(0 0 3px #2a4c7440); /* Blue glow */
 }
 
 .play-icon:hover, .pause-icon:hover, .stop-icon:hover {
@@ -155,27 +155,27 @@
 
 .neon-display {
     text-align: center;
-	font-family: 'Lobster', cursive;
+    font-weight: 100;
     margin-bottom: 10px;
 }
 
 .band-name {
-    font-size: 1.5em;
-    color: #9af36990;
-    text-shadow: 0 0 10px #9af36990, 0 0 20px #9af36990;
+    font-size: 1em;
+    color: #9af369;
+    text-shadow: 0 0 3px #9af369, 0 0 6px #9af369;
 }
 
 .song-title {
-    font-size: 1.2em;
-    color: #8c7dff90;
-    text-shadow: 0 0 10px #8c7dff90, 0 0 20px #8c7dff90;
+    font-size: 0.9em;
+    color: #8c7dff;
+    text-shadow: 0 0 3px #8c7dff, 0 0 6px #8c7dff;
 }
 
 .time-display {
-    color: #65b2ff50; /* Text color */
+    color: #2a4c74; /* Text color */
     width: 100px;
     margin: 0 0 2px 0;
     font-size: 0.7em; /* Adjust size as needed */
-    text-shadow: 0 0 3px #65b2ff40;
+    text-shadow: 0 0 3px #2a4c7440;
 }
 

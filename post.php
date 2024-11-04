@@ -27,8 +27,15 @@ if (isset($_GET['page'])) {
     $pagePath = safeFilePath($pages_dir, $page);
 
     if ($pagePath && file_exists($pagePath)) {
+        include __DIR__ . '/header.php';
+        
+        echo '<div class="page">';
+        echo '<div class="avatar"><img src="/path/to/avatar.jpg" alt="Avatar"></div>'; // Adjust the path to the avatar image
         $content = file_get_contents($pagePath);
         echo $parsedown->text($content);
+        echo '</div>';
+        
+        include __DIR__ . '/footer.php';
     } else {
         echo 'Page not found.';
     }
@@ -52,11 +59,9 @@ if (isset($_GET['page'])) {
                 if ($post_slug === $slug) {
                     $found_post = true;
                     include __DIR__ . '/header.php';
-                    echo '<div class="post">';
-                    
-                    // Add avatar div here
-                    echo '<div class="avatar"></div>';
 
+                    echo '<div class="post">';
+                    echo '<div class="avatar"></div>'; // Adjust the path to the avatar image
                     echo '<h3>' . htmlspecialchars($yaml['title'] ?? 'Untitled') . '</h3>';
                     
                     // Display formatted date if available
@@ -67,6 +72,7 @@ if (isset($_GET['page'])) {
 
                     echo $parsedown->text(str_replace('<!--more-->', '', $md_content));
                     echo '</div>';
+                    
                     include __DIR__ . '/footer.php';
                     break;
                 }

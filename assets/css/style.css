@@ -13,7 +13,7 @@ body {
     background-size: 200px 200px;
     color: #b0b8ba;
     font-family: 'IBM Plex Mono', monospace;
-    padding: 50px 0;
+    padding: 40px;
 }
 
 /* Main Container */
@@ -24,12 +24,12 @@ body {
     background: rgba(0, 0, 0, 0.9) url(../img/cbck.png) top center no-repeat;
     text-align: center;
     /* border: 5px solid #00091f;      Inner border */
-    border: 2px solid #01154a99;
-    outline: 2px solid #000;      /* Outer border */
+    border: 1px solid #01154a90;
+    outline: 18px solid #8c7dff15;      /* Outer border */
     outline-offset: 0;            /* Position the outline closer */           /* Position the outline closer */
     position: relative;
-    border-radius: 20px;
-    box-shadow: 0 0 0 3px #01154a99;
+    border-radius: 12px;
+    box-shadow: 0 0 0 8px #01154a90;
 }
 
 /* Header Styling */
