@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lobster');
 
+@import url("player.css");
+
 /* Body Styling */
 body {
     display: flex;
@@ -17,17 +19,17 @@ body {
 /* Main Container */
 .container {
     width: 80%;  /* Reduced width for smaller screens */
-    max-width: 610px;
+    max-width: 550px;
     padding: 35px 50px 0 50px;
     background: rgba(0, 0, 0, 0.9) url(../img/cbck.png) top center no-repeat;
     text-align: center;
     /* border: 5px solid #00091f;      Inner border */
-    border: 1px solid #01154a99;
-    outline: 12px solid #01154a30;      /* Outer border */
+    border: 2px solid #01154a99;
+    outline: 2px solid #000;      /* Outer border */
     outline-offset: 0;            /* Position the outline closer */           /* Position the outline closer */
     position: relative;
-    border-radius: 12px;
-    box-shadow: 0 0 0 24px #01154a20;
+    border-radius: 20px;
+    box-shadow: 0 0 0 3px #01154a99;
 }
 
 /* Header Styling */
@@ -51,8 +53,12 @@ header h1 {
     color: #262f5c; /* Bright green color typical of terminal text */
 }
 
-.menu a {
-    padding: 6px;
+.menu li::before {
+    content: none;
+}
+
+.menu li a {
+    padding-right: 10px;
     font-size: 14px;
     font-weight: 100;
     color: #8c7dff;
@@ -63,7 +69,6 @@ header h1 {
 }
 
 .menu a:hover {
-    font-weight: 100;
     color: #9af369; /* Change color on hover */
     text-shadow: 0 0 2px #9af369; /* Optional hover glow effect */
 }
@@ -114,7 +119,7 @@ header h1 {
 .post {
     font-size: 14px;
     text-align: left;
-    margin-bottom: 80px;
+    margin-bottom: 100px;
 }
 
 .post img {
@@ -135,6 +140,12 @@ header h1 {
     height: 40px;
     border-radius: 50%;
     opacity: 0.9;
+}
+
+.avatar:hover {
+    width: 45px;
+    height: 45px;
+    transition: all 0.5s ease;
 }
 
 /*.post:not(:last-child) {
@@ -184,9 +195,24 @@ h3 {
     margin-left: 49px;
 }
 
-ul, li {
-    margin: 0;
-    padding: 0;
+ul {
+    padding-left: 10px;
+}
+
+li {
+    color: #8c7dff;
+    list-style: none;
+}
+
+li::marker {
+    color: #9af369; /* Bullet color */
+}
+
+li::before {
+    content: "➔"; /* Use any Unicode arrow symbol */
+    color: #9af369; /* Arrow color */
+    font-size: 1.2em; /* Adjust size if needed */
+    margin-right: 4px;
 }
 
 
@@ -325,136 +351,3 @@ footer {
     }
 }
 
-#header {
-}
-
-.letter {
-   transition: color 0.3s ease;
-}
-
-.youtube-audio {
-  display: flex;               /* Use flexbox for alignment */
-  justify-content: center;     /* Center items horizontally */
-  align-items: center;         /* Center items vertically (optional) */
-  margin: 20px 0;             /* Add some vertical spacing */
-}
-
-.youtube-audio img {
-  max-width: none;            /* Keep the original size of the image */
-  width: auto;               /* Maintain aspect ratio */
-}
-
-.media-player {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    background-color: #01154a40;
-    border-radius: 4px;
-    width: 100%;
-    height: 50px;
-    border: 1px solid #01154a99;
-    margin-bottom: 3px;
-    box-sizing: border-box; /* Ensures padding doesn't affect total width */
-}
-
-.media-player button {
-    background-color: #01154a30;
-    color: #65b2ff;
-    padding: 8px 18px;
-    border: 0;
-    margin: 0 3px;
-    cursor: pointer;
-    border: 1px solid #01154a99;
-    border-radius: 4px;
-}
-
-.media-player button:hover {
-    background-color: #01154a50;
-    color: #8c7dff;
-}
-
-/* General styles for the progress bar */
-.progress-bar {
-    -webkit-appearance: none; /* Removes default styling */
-    appearance: none;
-    width: 100%; /* Full width */
-    height: 1px; /* Height of the progress bar */
-    background-color: #01154a00; /* Base track color */
-    border-radius: 2px;
-    outline: none;
-    border: none;
-    margin: 0 6px 0 0;
-    padding: 1px;
-    border: 1px solid #01154a99;
-}
-/* Progress fill (for Chrome, Safari, Edge) */
-.progress-bar::-webkit-slider-runnable-track {
-    background-color: transparent; /* Track color */
-}
-
-/* Firefox track */
-.progress-bar::-moz-range-track {
-    background-color: transparent;
-    height: 8px; /* Height of the progress bar */
-    border-radius: 0px;
-}
-
-/* Styling for the filled portion of the bar (WebKit) */
-.progress-bar::-webkit-slider-runnable-track {
-    background: #fff; /* Progress color */
-}
-
-/* Styling for the thumb (WebKit) */
-.progress-bar::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 50px;
-    height: 8px;
-    background-color: #8c7dff99;
-    cursor: pointer;
-    border: none;
-    border-radius: 2px;
-}
-
-/* Firefox thumb */
-.progress-bar::-moz-range-thumb {
-    width: 50px;
-    height: 8px;
-    background-color: #8c7dff99;
-    cursor: pointer;
-    border: none;
-    border-radius: 2px;
-}
-
-/* Firefox thumb */
-.progress-bar::-moz-range-thumb:hover {
-    background-color: #8c7dff;
-    box-shadow: 0 0 10px #8c7dff99;
-}
-
-/* For Internet Explorer */
-.progress-bar::-ms-track {
-    background-color: transparent;
-    border-color: transparent;
-    color: transparent;
-    width: 100%;
-    height: 8px;
-}
-
-.progress-bar::-ms-fill-lower {
-    background: transparent;
-}
-
-.progress-bar::-ms-fill-upper {
-    background: transparent;
-}
-
-.progress-bar::-ms-thumb {
-    width: 50px;
-    height: 8px;
-    background-color: #8c7dff99;
-    cursor: pointer;
-    border: none;
-    border-radius: 3px;
-}

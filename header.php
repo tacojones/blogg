@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nebulung</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
     <div class="container">
         <header>
-            <h1 id="header">SUNDISC INVASION</h1>
+            <h1 id="header">NEBUNOMINCON</h1>
 
     <div class="menu">
         <ul>
