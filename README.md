@@ -2,10 +2,7 @@
     
 ![blogg](logo.png)
 
-[Escape the Grid.webm](https://github.com/user-attachments/assets/a821f311-0c28-406c-a59e-083dca74e403)
-
 </div>
-
 # PHP Blog Script
 
 This is a simple PHP blog script that parses Markdown posts with YAML front matter for metadata, allowing you to group posts by year and month in subfolders. It also supports static pages, a clean URL structure, and automatic slug generation. The script uses [Parsedown](https://parsedown.org/) for Markdown parsing and a custom YAML parser for front matter.
@@ -60,6 +57,8 @@ Post is here in Markdown and HTML.
  - Pages are accessible via post.php?page=page-filename.
 
 4. **Customizing date formats**: The script supports multiple date formats for flexibility in displaying post dates. Modify this section in post.php to add or change formats.
+
+[Escape the Grid.webm](https://github.com/user-attachments/assets/a821f311-0c28-406c-a59e-083dca74e403)
 
 ![blogg](screenshot.png)
 
