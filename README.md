@@ -58,8 +58,6 @@ Post is here in Markdown and HTML.
 
 4. **Customizing date formats**: The script supports multiple date formats for flexibility in displaying post dates. Modify this section in post.php to add or change formats.
 
-[Escape the Grid.webm](https://github.com/user-attachments/assets/a821f311-0c28-406c-a59e-083dca74e403)
-
 ![blogg](screenshot.png)
 
 Example script to post to the blog. Includes metadata fetching from article URLs.
