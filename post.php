@@ -29,8 +29,7 @@ if (isset($_GET['page'])) {
     if ($pagePath && file_exists($pagePath)) {
         include __DIR__ . '/header.php';
         
-        echo '<div class="page">';
-        echo '<div class="avatar"><img src="/path/to/avatar.jpg" alt="Avatar"></div>'; // Adjust the path to the avatar image
+        echo '<div class="post">';
         $content = file_get_contents($pagePath);
         echo $parsedown->text($content);
         echo '</div>';
