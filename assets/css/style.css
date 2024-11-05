@@ -23,13 +23,12 @@ body {
     padding: 35px 50px 0 50px;
     background: rgba(0, 0, 0, 0.9) url(../img/cbck.png) top center no-repeat;
     text-align: center;
-    /* border: 5px solid #00091f;      Inner border */
-    border: 1px solid #01154a90;
-    outline: 18px solid #8c7dff15;      /* Outer border */
+    border: 1px dotted #022070;
+    outline: 10px solid #000;      /* Outer border */
     outline-offset: 0;            /* Position the outline closer */           /* Position the outline closer */
     position: relative;
     border-radius: 12px;
-    box-shadow: 0 0 0 8px #01154a90;
+    box-shadow: 0 0 50px 11px #000000;
 }
 
 /* Header Styling */
@@ -37,6 +36,7 @@ header h1 {
     color: #9af369;
     font-weight: 100;
     margin: 0;
+    padding: 0;
 }
 
 /* Menu Styling */
