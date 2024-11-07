@@ -25,6 +25,7 @@
 - Custom date formatting: flexible date display options
 - `Parsedown` integration: parses Markdown to HTML for posts
 - Supports Markdown metadata with YAML
+- YouTube media player integration: plays YouTube videos with custom controls and progress tracking
 
 ## File Structure
 
