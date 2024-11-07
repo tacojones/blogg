@@ -281,6 +281,32 @@ include 'footer.php';
 ```
 ![blogg](screenshot2.png)
 
+Example HTML to display a Youtube audio player in **blogg**. Give each player a unique ID for multiple players on one page.
+
+
+```html
+<div class="media-player" data-video="d_21C2K97VI" id="player1">
+    <input type="range" class="progress-bar" value="0" step="1" min="0" />
+    <span class="time-display">
+        <span class="elapsed-time">0:00</span> / <span class="total-time">0:00</span>
+    </span>
+    
+    <button class="toggle-play-btn">
+        <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z" />
+        </svg>
+    </button>
+
+    <button class="stop-btn">
+        <svg class="stop-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M6 6h12v12H6z" />
+        </svg>
+    </button>
+</div>
+
+<div id="youtube-players"></div>
+```
+
 ## Security
 
 1. **Safe File Path Validation**  
