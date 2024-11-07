@@ -271,6 +271,7 @@ include 'header.php';
 include 'footer.php';
 ?>
 ```
+![blogg](screenshot2.png)
 
 ## Security
 
