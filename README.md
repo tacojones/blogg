@@ -1,9 +1,9 @@
-<div align="center" style="margin-bottom: 20px;">
+<div align="center">
     
 ![blogg](logo.png)
 
 </div>
-
+<br><br>
 **blogg** is a simple, flat-file blogging platform designed for Markdown-based content. With no database required, **blogg** organizes posts in the file system, supports YAML front matter for metadata, and includes essential features like pagination, syntax highlighting, search, and clean URL generation. Ideal for minimalist blogs or documentation, **blogg** keeps setup easy and code light.
 
 ## Features
