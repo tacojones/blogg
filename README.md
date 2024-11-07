@@ -3,7 +3,8 @@
 ![blogg](logo.png)
 
 </div>
-blogg is a lightweight, flat-file blogging platform that combines simplicity with essential features. Built for developers and content creators who want a no-database, markdown-based blogging solution, blogg leverages Markdown for post content and YAML front matter for metadata, keeping everything neatly organized in the file system. It offers an intuitive interface with Markdown and syntax highlighting support, pagination, custom date formatting, and a built-in search feature. With blogg, you can create, manage, and display posts easily, all while keeping the setup minimal and code straightforward. This makes it perfect for small personal blogs, project documentation, or any site that benefits from a flat-file, database-free approach.
+
+blogg is a simple, flat-file blogging platform designed for Markdown-based content. With no database required, blogg organizes posts in the file system, supports YAML front matter for metadata, and includes essential features like pagination, syntax highlighting, search, and clean URL generation. Ideal for minimalist blogs or documentation, blogg keeps setup easy and code light.
 
 ## Features
 
