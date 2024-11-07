@@ -3,9 +3,7 @@
 ![blogg](logo.png)
 
 </div>
-# PHP Blog Script
-
-This is a simple PHP blog script that parses Markdown posts with YAML front matter for metadata, allowing you to group posts by year and month in subfolders. It also supports static pages, a clean URL structure, and automatic slug generation. The script uses [Parsedown](https://parsedown.org/) for Markdown parsing and a custom YAML parser for front matter.
+blogg is a lightweight, flat-file blogging platform that combines simplicity with essential features. Built for developers and content creators who want a no-database, markdown-based blogging solution, blogg leverages Markdown for post content and YAML front matter for metadata, keeping everything neatly organized in the file system. It offers an intuitive interface with Markdown and syntax highlighting support, pagination, custom date formatting, and a built-in search feature. With blogg, you can create, manage, and display posts easily, all while keeping the setup minimal and code straightforward. This makes it perfect for small personal blogs, project documentation, or any site that benefits from a flat-file, database-free approach.
 
 ## Features
 
