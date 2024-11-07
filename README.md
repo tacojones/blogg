@@ -9,15 +9,21 @@ This is a simple PHP blog script that parses Markdown posts with YAML front matt
 
 ## Features
 
-- Posts are written in Markdown with optional YAML front matter for metadata.
-- Group blog posts by year and month in subfolders for organized file structure.
-- Slug generation for clean URLs based on the post title or filename.
-- Safe file path handling to avoid directory traversal vulnerabilities.
-- Static page support for `/pages` directory.
-- Markdown parsing using Parsedown.
-- Custom YAML parser for post metadata.
-- Supports custom date formatting and multiple formats for flexibility.
-- Handles special `<!--more-->` tag for controlling content display.
+- Flat-file storage: stores posts as individual Markdown files for easy management
+- Organized file structure: groups posts by year and month in subfolders
+- Markdown support: formats posts with Parsedown for clean HTML output
+- YAML front matter: optional metadata for titles, dates, and more
+- Custom YAML parser: reads metadata from YAML front matter
+- Syntax highlighting: uses highlight.js for code blocks in posts
+- Pagination: enables browsing across multiple pages of posts
+- Read More tag: supports `<!--more-->` to control post truncation
+- Search functionality: allows text searches via a search form
+- Slug generation: creates clean URLs from post titles or filenames
+- Safe path handling: prevents directory traversal vulnerabilities
+- Static page support: supports custom pages from the `/pages` directory
+- Custom date formatting: flexible date display options
+- `Parsedown` integration: parses Markdown to HTML for posts
+- Supports Markdown metadata with YAML
 
 ## File Structure
 
