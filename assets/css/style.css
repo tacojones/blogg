@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-@import url('https://fonts.googleapis.com/css?family=Lobster');
-
 @import url("player.css");
 
 /* Body Styling */
@@ -16,12 +14,14 @@ body {
     padding: 40px;
 }
 
+
+
 /* Main Container */
 .container {
     width: 80%;  /* Reduced width for smaller screens */
     max-width: 550px;
     padding: 35px 50px 0 50px;
-    background: rgba(0, 0, 0, 0.9) url(../img/cbck.png) top center no-repeat;
+    background: #000 url(../img/cbck.png) top center no-repeat;
     text-align: center;
     border: 1px dotted #022070;
     outline: 10px solid #000;      /* Outer border */
@@ -33,15 +33,16 @@ body {
 
 /* Header Styling */
 header h1 {
-    color: #9af369;
+    color: #477aff;
     font-weight: 100;
     margin: 0;
     padding: 0;
+    text-shadow : 3px 3px 0px #000, 5px 5px 0px #262f5c;
 }
 
 /* Menu Styling */
 .menu {
-    margin: 0;
+    margin: -20px 0 0 0;
     padding: 0;
 }
 
@@ -119,7 +120,7 @@ header h1 {
 .post {
     font-size: 14px;
     text-align: left;
-    margin-bottom: 100px;
+    margin-bottom: 80px;
 }
 
 .post img {
@@ -162,6 +163,8 @@ header h1 {
 a {
     color: #9af369;
     text-decoration: none;
+    outline: none;
+    cursor: pointer;
 }
 
 /* Style for outgoing links */
@@ -181,7 +184,7 @@ h2 {
     color: #9af369; 
 }
 
-h3 {
+h3, h4 {
     color: #8c7dff;
 }
 
@@ -192,7 +195,7 @@ h3 {
 .post h3 {
     margin: 0; padding: 0;
     color: #9af369; 
-    margin-left: 49px;
+
 }
 
 ul {
@@ -200,7 +203,7 @@ ul {
 }
 
 li {
-    color: #8c7dff;
+
     list-style: none;
 }
 
@@ -219,6 +222,7 @@ li::before {
 hr {
     background: transparent;
     border: 0;
+    margin: 40px 0 40px 0;
     border-bottom: 1px dotted #8c7dff77;
 }
 
