@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/Parsedown.php';
 require_once __DIR__ . '/includes/YAMLParser.php';
 
 $posts_dir = __DIR__ . '/posts/';
-$posts_per_page = 10;
+$posts_per_page = 5;
 
 // Function to recursively get all Markdown files from the posts directory
 function getMarkdownFiles($dir) {
@@ -176,7 +176,7 @@ foreach ($files as $file) {
     // Display the post
     echo '<div class="post">';
     echo '<div class="avatar"></div>';
-    echo '<h3><a href="post.php?slug=' . htmlspecialchars($slug, ENT_QUOTES, 'UTF-8') . '">' . $title . '</a></h3>';
+    echo '<h3><a href="post.php?slug=' . htmlspecialchars($slug, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</a></h3>';
 
     $date = getPostDate($file);
     if ($date) {
@@ -194,13 +194,13 @@ foreach ($files as $file) {
 // Pagination controls
 echo '<div class="pagination">';
 if ($current_page > 1) {
-    echo '<a href="?page=' . ($current_page - 1) . '">Previous</a> ';
+    echo '<a href="?page=' . ($current_page - 1) . '">Previous</a>';
 }
 for ($i = 1; $i <= $total_pages; $i++) {
     if ($i == $current_page) {
-        echo '<span class="current-page">' . $i . '</span> ';
+        echo '<span class="current-page">' . $i . '</span>';
     } else {
-        echo '<a href="?page=' . $i . '">' . $i . '</a> ';
+        echo '<a href="?page=' . $i . '">' . $i . '</a>';
     }
 }
 if ($current_page < $total_pages) {

@@ -61,7 +61,9 @@ if (isset($_GET['page'])) {
 
                     echo '<div class="post">';
                     echo '<div class="avatar"></div>'; // Adjust the path to the avatar image
-                    echo '<h3>' . htmlspecialchars($yaml['title'] ?? 'Untitled') . '</h3>';
+                    // Decode any HTML entities in the title and then encode them for safe output
+                    $title = htmlspecialchars_decode($yaml['title'] ?? 'Untitled', ENT_QUOTES);
+                    echo '<h3>' . htmlspecialchars($title, ENT_QUOTES, 'UTF-8') . '</h3>';
                     
                     // Display formatted date if available
                     if (!empty($yaml['date'])) {
