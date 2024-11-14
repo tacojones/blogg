@@ -6,13 +6,15 @@
 
 /* Body Styling */
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: #080808 url(../img/bck.png); /* Black background */
     background-size: 200px 200px;
     color: #b0b8ba;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family:  'IBM Plex Mono', monospace;
+    font-size: 16px;
+    line-height: 1.6; /* Good balance for body text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 40px;
 }
 
@@ -120,7 +122,7 @@ header h1 {
 }
 
 .post {
-    font-size: 14px;
+    font-size: 15px;
     text-align: left;
     margin-bottom: 80px;
 }
@@ -315,29 +317,31 @@ label {
 /* Pagination */
 .pagination {
     text-align: center;
-    margin-top: 10px;
-    padding-bottom: 10px;
 }
 
 .pagination a,
 .pagination span {
     font-size: 11px;
     display: inline-block;
-    margin: 0;
+    margin: 0 1px;
     padding: 6px 12px;
     color: #65b2ff; /* Light Gray for Pagination */
     text-decoration: none;
-    background-color: #01154a20; /* Cyan for Pagination */
+    background-color: #01154a50; /* Cyan for Pagination */
     border-radius: 4px;
-    border: 1px solid #01154a99;
+    border: 1px solid #01154a80;
+    opacity: 0.55;
 }
 
 .pagination a:hover {
     background-color: #01154a50; /* Warm Gold on Hover */
+    color: #fff;
+    opacity: 1;
 }
 
 .pagination .current-page {
     background-color: #01154a50; /* Warm Gold for Current Page */
+    opacity: 1;
 }
 
 /* Footer */
@@ -355,5 +359,50 @@ footer {
     .container {
         width: 90%;
     }
+}
+
+body {
+    --glow-opacity: 0.2; /* Control the opacity of the glow */
+}
+
+/* General text glow */
+body, .container, .menu li a, .post, .date, a, h2, h3, h4, blockquote, pre, code, textarea, select, input, label, .pagination a, .pagination span, footer {
+    text-shadow: 0 0 1px rgba(255, 255, 255, var(--glow-opacity));
+}
+
+/* Additional glow for headers */
+header h1, h2, h3, h4 {
+    text-shadow: 0 0 1px rgba(154, 243, 105, var(--glow-opacity));
+}
+
+/* Glow for menu links */
+.menu a:hover {
+    color: #9af369; /* Change color on hover */
+    text-shadow: 0 0 1px rgba(154, 243, 105, var(--glow-opacity));
+}
+
+/* Glow for links */
+a:hover {
+    color: #8c7dff;
+    text-shadow: 0 0 1px rgba(140, 125, 255, var(--glow-opacity));
+}
+
+/* Glow for buttons */
+button {
+    text-shadow: 0 0 1px rgba(255, 255, 255, var(--glow-opacity));
+}
+
+/* Glow for pagination */
+.pagination a:hover, .pagination .current-page {
+   text-shadow: 0 0 1px rgba(71, 122, 255, var(--glow-opacity)),
+}
+
+footer {
+   text-shadow: 0 0 1px rgba(71, 122, 255, var(--glow-opacity)),
+}
+
+/* Blockquote glow */
+blockquote {
+   text-shadow: 0 0 1px rgba(71, 122, 255, var(--glow-opacity)),
 }
 
