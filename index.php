@@ -193,20 +193,42 @@ foreach ($files as $file) {
 
 // Pagination controls
 echo '<div class="pagination">';
+
 if ($current_page > 1) {
     echo '<a href="?page=' . ($current_page - 1) . '">Previous</a>';
 }
-for ($i = 1; $i <= $total_pages; $i++) {
+
+// Display first page and ellipsis if needed
+if ($current_page > 3) {
+    echo '<a href="?page=1">1</a>';
+    if ($current_page > 4) {
+        echo '<span>...</span>';
+    }
+}
+
+// Display pages around the current page
+for ($i = max(1, $current_page - 2); $i <= min($total_pages, $current_page + 2); $i++) {
     if ($i == $current_page) {
         echo '<span class="current-page">' . $i . '</span>';
     } else {
         echo '<a href="?page=' . $i . '">' . $i . '</a>';
     }
 }
+
+// Display last page and ellipsis if needed
+if ($current_page < $total_pages - 2) {
+    if ($current_page < $total_pages - 3) {
+        echo '<span>...</span>';
+    }
+    echo '<a href="?page=' . $total_pages . '">' . $total_pages . '</a>';
+}
+
 if ($current_page < $total_pages) {
     echo '<a href="?page=' . ($current_page + 1) . '">Next</a>';
 }
+
 echo '</div>';
+
 
 // Include the footer
 include __DIR__ . '/footer.php';
