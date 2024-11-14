@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-
 @import url('https://fonts.googleapis.com/css?family=Lobster');
-
 @import url("player.css");
 
 /* Body Styling */
@@ -9,27 +7,25 @@ body {
     background: #080808 url(../img/bck.png); /* Black background */
     background-size: 200px 200px;
     color: #b0b8ba;
-    font-family:  'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     font-size: 16px;
-    line-height: 1.6; /* Good balance for body text */
+    line-height: 1.4;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
 }
 
-
-
 /* Main Container */
 .container {
-    width: 80%;  /* Reduced width for smaller screens */
+    width: 80%;
     max-width: 550px;
     padding: 35px 50px 0 50px;
     background: #000 url(../img/cbck.png) top center no-repeat;
     text-align: center;
     border: 1px dotted #022070;
-    outline: 10px solid #000;      /* Outer border */
-    outline-offset: 0;            /* Position the outline closer */           /* Position the outline closer */
+    outline: 10px solid #000;
+    outline-offset: 0;
     position: relative;
     border-radius: 12px;
     box-shadow: 0 0 50px 11px #000000;
@@ -41,7 +37,7 @@ header h1 {
     font-weight: 100;
     margin: 0;
     padding: 0;
-    text-shadow : 3px 3px 0px #000, 5px 5px 0px #262f5c;
+    text-shadow: 3px 3px 0px #000, 5px 5px 0px #262f5c;
 }
 
 /* Menu Styling */
@@ -54,8 +50,8 @@ header h1 {
     list-style: none;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;  /* Allows items to wrap on smaller screens */
-    color: #262f5c; /* Bright green color typical of terminal text */
+    flex-wrap: wrap;
+    color: #262f5c;
 }
 
 .menu li::before {
@@ -69,13 +65,13 @@ header h1 {
     color: #8c7dff;
     cursor: pointer;
     text-transform: uppercase;
-    transition: color 0.25s; /* Transition for hover effect */
-    text-shadow: 0 0 1px #8c7dff; /* Optional hover glow effect */
+    transition: color 0.25s;
+    text-shadow: 0 0 1px #8c7dff;
 }
 
 .menu a:hover {
-    color: #9af369; /* Change color on hover */
-    text-shadow: 0 0 2px #9af369; /* Optional hover glow effect */
+    color: #9af369;
+    text-shadow: 0 0 2px #9af369;
 }
 
 /* Collapsible Search Box */
@@ -103,22 +99,22 @@ header h1 {
 }
 
 .search-box input[type="text"] {
-  padding: 5px;
-  font-size: 14px;
-  font-weight: 100;
-  width: 150px;
-  color: #477aff;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 100;
+    width: 150px;
+    color: #477aff;
 }
 
 .search-box input[type="submit"] {
-  padding: 5px;
-  font-size: 14px;
-  font-weight: 100;
-  width: 60px;
-  margin-left: 4px;
-  cursor: pointer;
-  color: #477aff;
-  text-shadow: 0 0 2px #477aff90;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 100;
+    width: 60px;
+    margin-left: 4px;
+    cursor: pointer;
+    color: #477aff;
+    text-shadow: 0 0 2px rgba(71, 122, 255, 0.56);
 }
 
 .post {
@@ -153,15 +149,15 @@ header h1 {
     transition: all 0.5s ease;
 }
 
-/*.post:not(:last-child) {
+/* .post:not(:last-child) {
     border-bottom: none;
-}*/
+} */
 
 .date {
     color: #8c7dff;
     font-size: 12px;
     margin: 0 0 20px 49px;
-    border-bottom: 1px dotted #262f5c;
+    border-bottom: 1px dotted rgba(140, 125, 255, 0.47);
 }
 
 a {
@@ -173,7 +169,7 @@ a {
 
 /* Style for outgoing links */
 a[href^="http"]:not([href*="yourdomain.com"])::after {
-    content: "⤴"; /* Up arrow symbol */
+    content: "⤴";
     font-size: 0.9em;
     color: #8c7dff;
     margin: 0;
@@ -185,7 +181,7 @@ a:hover {
 }
 
 h2 {
-    color: #9af369; 
+    color: #9af369;
 }
 
 h3, h4 {
@@ -198,8 +194,7 @@ h3, h4 {
 
 .post h3 {
     margin: 0; padding: 0;
-    color: #9af369; 
-
+    color: #9af369;
 }
 
 ul {
@@ -207,53 +202,52 @@ ul {
 }
 
 li {
-
     list-style: none;
 }
 
 li::marker {
-    color: #9af369; /* Bullet color */
+    color: #9af369;
 }
 
 li::before {
-    content: "➔"; /* Use any Unicode arrow symbol */
-    color: #9af369; /* Arrow color */
-    font-size: 1.2em; /* Adjust size if needed */
+    content: "➔";
+    color: #9af369;
+    font-size: 1.2em;
     margin-right: 4px;
 }
-
 
 hr {
     background: transparent;
     border: 0;
     margin: 40px 0 40px 0;
-    border-bottom: 1px dotted #8c7dff77;
+    border-bottom: 1px dotted rgba(140, 125, 255, 0.47);
 }
 
 blockquote {
-    background: #01154a20;
+    background: rgba(1, 21, 74, 0.13);
     color: #65b2ff;
     font-style: italic;
-    border: 1px solid #01154a99;
-	border-radius: 8px;
-	margin: 30px 20px 0 20px;
-	min-height: 90px;
-	position: relative;
-	padding: 20px;
+    border: 1px solid rgba(1, 21, 74, 0.6);
+    border-radius: 8px;
+    margin: 30px 20px 0 20px;
+    min-height: 90px;
+    position: relative;
+    padding: 20px;
     line-height: 1.3;
-	h2 {
-        background: linear-gradient(to bottom, #000, #000410);
-        color: #65b2ff;
-		font-family: 'Lobster', cursive;
-		font-weight: normal;
-        font-style: normal;
-		display: inline-block;
-		margin: 0;
-		position: absolute;
-		top: -14px;
-        border-radius: 8px;
-        letter-spacing: 0.5px;
-	}
+}
+
+blockquote h2 {
+    background: linear-gradient(to bottom, #000, #000410);
+    color: #65b2ff;
+    font-family: 'Lobster', cursive;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    top: -14px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
 }
 
 pre {
@@ -270,22 +264,22 @@ code {
 
 /* Form elements styling */
 textarea, select, input {
-    width: 100%; /* Full width of the parent .post container */
+    width: 100%;
     padding: 10px;
-    background-color: #01154a20;
+    background-color: rgba(1, 21, 74, 0.13);
     color: #ccc;
-    border: 1px solid #01154a99;
+    border: 1px solid rgba(1, 21, 74, 0.6);
     border-radius: 4px;
     margin-bottom: 10px;
     outline: none;
-    box-sizing: border-box; /* Ensures padding doesn't affect total width */
-    resize: vertical; /* Enables only vertical resizing */
+    box-sizing: border-box;
+    resize: vertical;
 }
 
 button {
     padding: 10px 20px;
-    background: #01154a !important; /* Blue to teal gradient */
-    color: #e3f6ff; /* Light, complementary font color */
+    background: rgba(1, 21, 74, 1) !important;
+    color: #e3f6ff;
     font-weight: 100;
     border: none;
     border-radius: 5px;
@@ -293,16 +287,14 @@ button {
     transition: all 0.3s ease;
 }
 
-/* Hover effect with a brighter inner glow */
 button:hover {
-    background: #01154a !important; /* Blue to teal gradient */
+    background: rgba(1, 21, 74, 1) !important;
     color: #ffffff !important;
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
-/* Active effect for pressed look */
 button:active {
-    transform: translateY(1px); /* Slight press down effect */
+    transform: translateY(1px);
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
@@ -311,7 +303,12 @@ label {
     color: #477aff;
     font-size: 13px;
     font-weight: 100;
-    text-shadow: 0 0 2px #477aff90;
+    text-shadow: 0 0 2px rgba(71, 122, 255, 0.56);
+}
+
+/* Pagination */
+.pagination {
+    text-align: center;
 }
 
 /* Pagination */
@@ -344,6 +341,7 @@ label {
     opacity: 1;
 }
 
+
 /* Footer */
 footer {
     margin-top: 2rem;
@@ -351,7 +349,7 @@ footer {
     font-weight: 300;
     color: #01154a;
     text-align: center;
-    text-shadow: 0 0 3px #01154a60;
+    text-shadow: 0 0 1px #01154a !important;
 }
 
 /* Responsive Styles */
@@ -394,10 +392,6 @@ button {
 
 /* Glow for pagination */
 .pagination a:hover, .pagination .current-page {
-   text-shadow: 0 0 1px rgba(71, 122, 255, var(--glow-opacity)),
-}
-
-footer {
    text-shadow: 0 0 1px rgba(71, 122, 255, var(--glow-opacity)),
 }
 
