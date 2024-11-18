@@ -10,22 +10,20 @@
 
 ## Features
 
-- Flat-file storage: stores posts as individual Markdown files for easy management
-- Organized file structure: groups posts by year and month in subfolders
-- Markdown support: formats posts with Parsedown for clean HTML output
-- YAML front matter: optional metadata for titles, dates, and more
-- Custom YAML parser: reads metadata from YAML front matter
-- Syntax highlighting: uses highlight.js for code blocks in posts
-- Pagination: enables browsing across multiple pages of posts
-- Read More tag: supports `<!--more-->` to control post truncation
-- Search functionality: allows text searches via a search form
-- Slug generation: creates clean URLs from post titles or filenames
-- Safe path handling: prevents directory traversal vulnerabilities
-- Static page support: supports custom pages from the `/pages` directory
-- Custom date formatting: flexible date display options
-- `Parsedown` integration: parses Markdown to HTML for posts
-- Supports Markdown metadata with YAML
-- YouTube media player integration: plays YouTube videos with custom controls and progress tracking
+- **Flat-file storage**: Stores posts as individual Markdown files for easy management.  
+- **Organized file structure**: Groups posts by year and month in subfolders.  
+- **Markdown support**: Formats posts with Parsedown for clean HTML output.  
+- **YAML front matter**: Provides optional metadata for titles, dates, and more.  
+- **Custom YAML parser**: Reads metadata from YAML front matter.  
+- **Syntax highlighting**: Uses highlight.js for code blocks in posts.  
+- **Pagination**: Enables browsing across multiple pages of posts.  
+- **Read More tag**: Supports `<!--more-->` to control post truncation.  
+- **Search functionality**: Allows text searches via a search form.  
+- **Slug generation**: Creates clean URLs from post titles or filenames.  
+- **Safe path handling**: Prevents directory traversal vulnerabilities.  
+- **Static page support**: Supports custom pages from the `/pages` directory.  
+- **Custom date formatting**: Offers flexible date display options.  
+- **YouTube media player integration**: Plays YouTube videos with custom controls and progress tracking.  
 
 ## File Structure
 
