@@ -23,7 +23,7 @@
 - **Safe path handling**: Prevents directory traversal vulnerabilities.  
 - **Static page support**: Supports custom pages from the `/pages` directory.  
 - **Custom date formatting**: Offers flexible date display options.  
-- **YouTube media player integration**: Plays YouTube videos with custom controls and progress tracking.  
+- **YouTube media player integration**: Plays YouTube audio with custom controls and progress tracking.  
 
 ## File Structure
 
