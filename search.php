@@ -9,7 +9,7 @@ $parsedown->setSafeMode(false);
 
 // Helper function to safely read file contents
 function safeFilePath($base_dir, $requested_file) {
-    $requested_file = str_replace(["\0", "../", "..\\"], '', $requested_file);
+    $requested_file = basename(str_replace(["\0", "../", "..\\"], '', $requested_file));
     $full_path = realpath($base_dir . '/' . $requested_file);
     return ($full_path !== false && strpos($full_path, $base_dir) === 0) ? $full_path : false;
 }
@@ -37,7 +37,7 @@ function generateSlug($string) {
 $query = isset($_GET['q']) ? trim($_GET['q']) : '';
 
 if ($query === '') {
-    echo 'Please enter a search query.';
+    header("Location: search_form.php");
     exit;
 }
 
@@ -72,11 +72,11 @@ foreach ($files as $file_path) {
     }
 
     // Normalize keys to lowercase
-    $yaml = array_change_key_case($yaml, CASE_LOWER);
+    $yaml = array_change_key_case(is_array($yaml) ? $yaml : [], CASE_LOWER);
 
     // Get the title and date for the search
-    $title = isset($yaml['title']) ? $yaml['title'] : 'Untitled';
-    $date = isset($yaml['date']) ? $yaml['date'] : 'Unknown Date';
+    $title = $yaml['title'] ?? 'Untitled';
+    $date = $yaml['date'] ?? 'Unknown Date';
 
     // Check if the search query matches the title or content
     if (stripos($title, $search_query) !== false || stripos($md_content, $search_query) !== false) {
@@ -115,4 +115,3 @@ include __DIR__ . '/header.php';
 <?php
 include __DIR__ . '/footer.php';
 ?>
-
